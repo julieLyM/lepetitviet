@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Le petit Vietnamien{% endblock %}
+
+{% block body %}
+    <div class="p-3 mx-auto text-center">
+        <h1 class="display-4">accueil</h1>
+    </div>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success" role="alert">{{ message }}</div>
+    {% endfor %}
+    {# <div class="py-5 bg-light">
+        <div class="container">
+            <div class="row"> #}
+
+            {# {% if is_granted('ROLE_MANAGER') %}
+                <div class="col">
+                    Bienvenue {{app.user.firstname}} {{app.user.lastname}}
+                    <button class="btn btn-primary">go sur ton profil</button>
+                    <button class="btn btn-primary">go sur les commandes</button>
+                </div>
+            {% endif %} #}
+{#             
+            </div>
+        </div>
+    </div> #}
+
+{% endblock %}

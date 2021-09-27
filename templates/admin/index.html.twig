@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BIENVENUE ADMIN!{% endblock %}
+
+{% block body %}
+    welcome dans l'administration
+    {% if app.user %}
+        <div class="mb-3">
+            You are logguer en tant que {{ app.user.username }}
+        </div>
+    {% endif %}
+        <a href="{{ path('admin_utilisateurs') }}"><button class="btn btn-warning" >Mon profil</button></a>
+
+        <a href="{{ path('newsletters_prepare') }}"><button class="btn btn-success" >Ecrire une newsletter</button></a>
+        <a href="{{ path('newsletters_list') }}"><button class="btn btn-success" >Envoyer une newsletter</button></a>
+
+        <a href="{{ path('admin_utilisateurs') }}"><button class="btn btn-danger" >Liste de tout les utilisateurs</button></a>
+{% endblock %}

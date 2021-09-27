@@ -1,0 +1,70 @@
+{% extends "base.html.twig" %}
+
+{% block title %}users{% endblock %}
+
+{% block body %}
+
+    <div class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <h2>liste des users :</h2>
+
+
+                <table class="table" style="text-align:center;">
+                    <thead>
+                        <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Prénom</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Rôles</th>
+                        <th scope="col">Modifier</th>
+                        <th scope="col">Supprimer</th>
+
+
+
+                        </tr>
+                    </thead>
+                    {% for user in users %}
+                    <tbody>
+                        <tr>                
+                            <th scope="row"> {{ user.id }}</th>
+                            <td>{{ user.lastname }}</td>
+                            <td>{{ user.firstname }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>
+                            {% for role in user.roles %}
+                                {% if role == "ROLE_USER" %}
+                                    Utilisateur
+                                {% elseif role == "ROLE_MANAGER"  %}
+                                    Manager
+                                {% elseif role == "ROLE_ADMIN"  %}
+                                    Admin
+                                {% endif %}
+                            {% endfor %} 
+                            </td>
+                            <td>
+                                <a class="btn" href="{{ path('admin_utilisateur_modifier', { 'id' : user.id }) }}">
+                                    <img src="{{asset('img/icone/modifier.png')}}" alt ="Modifier" height="20px">
+                                </a>
+                            </td> 
+                            <td>
+                                <a href="{{ path('admin_utilisateur_supp', {'id': user.id}) }}">
+                                  <img src="{{asset('img/icone/delete.png')}}" alt ="Supprimer" height="20px">
+                                </a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>                
+                            <td>il n'y a pas de users</td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}
