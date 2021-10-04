@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CHOIX DE PRODUITS{% endblock %}
+
+{% block body %}
+ 
+<div class="container mx-auto">
+
+    <div class="row mt-3">
+        <div class="col-md-4 d-flex justify-content-center">
+            <div class="card text-center" style="width: 18rem;">
+                <div class="card-body">
+                    <a href="{{ path('products_show', {'slug' : 'entree'}) }}" >
+                    <img src="{{ asset('uploads/nem.png') }} " class="card-img-top" alt="nem" width="50%">
+                        <h5 class="card-title p-3">Entree</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+    
+        <div class="col-md-4 d-flex justify-content-center">
+            <div class="card text-center" style="width: 18rem;">
+                <div class="card-body">
+                    <a href="{{ path('products_show', {'slug' : 'plat'}) }}">
+                    <img src="{{ asset('uploads/bo-bun.jpg') }} " class="card-img-top" alt="un bo bun" width="50%">
+                        <h5 class="card-title p-3">Plat</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-4 d-flex justify-content-center">
+            <div class="card text-center" style="width: 18rem;">
+                <div class="card-body">
+                    <a href="{{ path('products_show', {'slug' : 'formule'}) }}">
+                    <img src="{{ asset('uploads/menu.jpg') }} " class="card-img-top" alt="un bo bun" width="50%">
+                        <h5 class="card-title p-3">Formule</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-6 d-flex justify-content-center" >
+            <div class="card text-center" style="width: 18rem;">
+                <div class="card-body">
+                    <a href="{{ path('products_show', {'slug' : 'dessert'}) }}">
+                    <img src="{{ asset('uploads/coco.jpeg') }} " class="card-img-top" alt="dessert coco" width="50%">
+                        <h5 class="card-title p-3">Dessert</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 d-flex justify-content-center">                  
+            <div class="card text-center" style="width: 18rem;">
+                <div class="card-body">
+                    <a href="{{ path('products_show', {'slug' : 'bubbletea'}) }}">
+                    <img src="{{ asset('uploads/bubletea.jpeg') }} " class="card-img-top" alt="bb tea" width="50%">
+                        <h5 class="card-title">Bubble tea</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

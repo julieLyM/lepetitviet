@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\EditUserType;
+use App\Repository\OrderRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -79,6 +80,16 @@ class AdminController extends AbstractController
             $this->addFlash('message','user supprimer');
 
         return $this->redirectToRoute('admin_utilisateurs');
+    }
+
+     /**
+     * @Route("/orders",name="orders", methods={"GET|POST"})
+     *
+     */    public function orderList(OrderRepository $orders): Response
+     {
+        return $this->render('admin/orders.html.twig', [
+            'orders' => $orders->findAll()
+        ]);
     }
 
 }

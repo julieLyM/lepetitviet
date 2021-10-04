@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CartController!{% endblock %}
+
+{% block body %}
+<h1>panier</h1>
+<a href="{{ path('products_index') }}">
+<h4>Continuer les achats</h4></a>
+{% if items | length > 0 %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Produit</th>
+            <th>Prix</th>
+            <th>Quantité</th>
+            <th>Total</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for item in items %}
+        <tr>
+            <td>{{item.product.name}}</td>
+            <td>{{item.product.price}}</td>
+                 <td>
+                    <a href="{{ path('cart_decrease', {'id': item.product.id}) }}">
+                        -
+                    </a>
+                     {{item.quantity }}
+                    <a href="{{ path('cart_add', {'id': item.product.id}) }}">
+                        +
+                    </a>
+                </td>
+            <td>{{item.product.price * item.quantity}}</td>
+            <td>
+                <a href="{{path('cart_remove', {'id': item.product.id})}}" class="btn btn-danger btn-sm">
+                   supp
+                </a>
+            </td>
+
+        </tr>
+            {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-end">Total : </td>
+            <td>{{ total }}</td>
+
+            <h4>
+                {% if app.user %}
+
+             <td><a href="{{ path('order_index') }}" class="btn btn-success btn-block mt-2">Valider la reservation</a></td>
+            {% else %}
+                <td>
+                <p class="d-block title-PageProduct">Pour réserver vous devez vous connecter</p>
+                <a class="btn btn-warning mr-1" href="{{ path('app_login') }}">Connexion</a>
+                </td>
+            {% endif %}
+            </h4>
+
+
+       
+        <tr>
+    </tfoot>
+</table>
+{% else %}
+    <p>c'est vide</p>
+{% endif %}
+
+{% endblock %}

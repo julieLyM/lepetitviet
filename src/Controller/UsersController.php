@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Order;
 use App\Form\EditUserType;
+use App\Repository\OrderRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,8 +24,6 @@ class UsersController extends AbstractController
             'controller_name' => 'UsersController',
         ]);
     }
-
-
 
     /**
      * 
@@ -46,4 +46,18 @@ class UsersController extends AbstractController
             'userForm' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/user/order/{id}",name="user_order", methods={"GET|POST"})
+     *
+     */    public function userOrder(OrderRepository $orders, $id): Response
+     {
+         $orders = $this->getDoctrine()
+         ->getRepository(Order::class)
+         ->findBy(array('id' => $id));
+        //  dd($orders);
+        return $this->render('users/order-user.html.twig', [
+            'orders' => $orders]);
+    }
+
 }

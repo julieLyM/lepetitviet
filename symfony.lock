@@ -2,6 +2,9 @@
     "composer/package-versions-deprecated": {
         "version": "1.11.99.3"
     },
+    "contao-components/installer": {
+        "version": "1.4.1"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -102,6 +105,9 @@
     },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.5"
+    },
+    "heimrichhannot-contao-components/glightbox-gallery": {
+        "version": "1.0.6"
     },
     "laminas/laminas-code": {
         "version": "4.4.2"
@@ -236,6 +242,9 @@
         "files": [
             "./config/packages/sensio_framework_extra.yaml"
         ]
+    },
+    "stripe/stripe-php": {
+        "version": "v7.97.0"
     },
     "symfony/asset": {
         "version": "v5.3.4"

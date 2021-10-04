@@ -32,7 +32,7 @@ class Category
 
 
     /**
-     * @ORM\OneToMany(targetEntity=Product::class, mappedBy="product")
+     * @ORM\OneToMany(targetEntity=Product::class, mappedBy="categorie")
      */
     private $products;
 
@@ -70,17 +70,7 @@ class Category
         return $this;
     }
 
-    public function getProduct(): ?string
-    {
-        return $this->product;
-    }
 
-    public function setProduct(string $product): self
-    {
-        $this->product = $product;
-
-        return $this;
-    }
 
     public function getService(): ?string
     {

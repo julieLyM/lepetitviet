@@ -75,10 +75,7 @@ class Product
      */
     private $user;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Calendar::class, mappedBy="product")
-     */
-    private $calendars;
+
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="products")
@@ -86,11 +83,11 @@ class Product
      */
     private $categorie;
 
+    /**
+     * @ORM\Column(type="string", length=80)
+     */
+    private $slug;
 
-    public function __construct()
-    {
-        $this->calendars = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -238,6 +235,18 @@ class Product
     public function setCategory(?Category $categorie): self
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -25,6 +26,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\NotBlank(message="Ce champ est obligatoire")
      */
     private $email;
 
@@ -36,16 +38,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\Length(min=8, minMessage="Le mot de passe doit faire 8 caracteres minimum")
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Votre nom est obligatoire")
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=80)
+     * @Assert\NotBlank(message="Votre prénom est obligatoire")
      */
     private $firstname;
 
@@ -55,17 +60,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $adress;
 
     /**
-     * @ORM\Column(type="integer", length=5,nullable=tru)
+     * @ORM\Column(type="integer", length=5,nullable=true)
      */
     private $zipcode;
 
     /**
-     * @ORM\Column(type="string", length=255,nullable=tru)
+     * @ORM\Column(type="string", length=255,nullable=true)
      */
     private $city;
 
     /**
-     * @ORM\Column(type="integer",nullable=tru)
+     * @ORM\Column(type="integer",nullable=true)
+     * @Assert\NotBlank(message="Votre téléphone est obligatoire")
      */
     private $phone;
 
@@ -94,11 +100,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\OneToMany(targetEntity=Product::class, mappedBy="user")
      */
     private $products;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Calendar::class, mappedBy="user")
-     */
-    private $calendars;
 
     /**
      * @ORM\OneToMany(targetEntity=Order::class, mappedBy="user")

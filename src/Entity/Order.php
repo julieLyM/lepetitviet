@@ -47,9 +47,20 @@ class Order
      */
     private $user;
 
+    /**
+     * @ORM\OneToMany(targetEntity=OrderDetails::class, mappedBy="userOrder")
+     */
+    private $details;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $stripeSessionId;
+
 
     public function __construct()
     {
+        $this->details = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -119,5 +130,46 @@ class Order
         return $this;
     }
 
+    /**
+     * @return Collection|OrderDetails[]
+     */
+    public function getDetails(): Collection
+    {
+        return $this->details;
+    }
+
+    public function addDetail(OrderDetails $detail): self
+    {
+        if (!$this->details->contains($detail)) {
+            $this->details[] = $detail;
+            $detail->setUserOrder($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDetail(OrderDetails $detail): self
+    {
+        if ($this->details->removeElement($detail)) {
+            // set the owning side to null (unless already changed)
+            if ($detail->getUserOrder() === $this) {
+                $detail->setUserOrder(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getStripeSessionId(): ?string
+    {
+        return $this->stripeSessionId;
+    }
+
+    public function setStripeSessionId(?string $stripeSessionId): self
+    {
+        $this->stripeSessionId = $stripeSessionId;
+
+        return $this;
+    }
 
 }

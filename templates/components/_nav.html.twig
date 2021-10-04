@@ -1,8 +1,9 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: white;">
   <div class="container-fluid">
 
   {# premier bloc menu #}
-    <a class="navbar-brand" href="{{ path('index') }}">Le petit Vietnamien</a>
+    <a class="navbar-brand" href="{{ path('index') }}"><img src="{{ asset('uploads/logoV.png') }} " alt="" width="50%">
+</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -11,26 +12,27 @@
         <ul class="navbar-nav">
 
           <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">menu</a>
+              <a class="nav-link active" aria-current="page" href="{{ path('index') }}#menu">Menu</a>
           </li
 
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">commander</a>
+            <a class="nav-link active" aria-current="page" href="{{ path('products_index') }}">Commander</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{ path('newsletters_home', {'slug' : 'newsletter'}) }}">recevoir la newsletters</a>
+            <a class="nav-link active" aria-current="page" href="{{ path('newsletters_home', {'slug' : 'newsletter'}) }}">Newsletters</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">contact</a>
+            <a class="nav-link active" aria-current="page" href="{{ path('index') }}#contact">contact</a>
           </li>
         </ul>
       </div>
 
         {# second bloc menu #}
-        <ul class="navbar-nav">
-          {% if is_granted('ROLE_MANAGER') %}
+        <div>
+        <ul class="navbar-nav mobile-btn-navbar">
+          {% if is_granted('ROLE_ADMIN') %}
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="{{ path('admin_index') }}">Administration</a>
             </li>
@@ -40,21 +42,27 @@
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="{{ path('users') }}">Mon profil</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="{{ path('cart_index') }}">Mon panier</a>
+            </li>
           {% endif %}  
 
 
           {% if app.user %}
-            {# <a class="btn btn-outline-secondary mr-1" href="{{ path('service_calendar') }}">Calendrier</a> #}
-            <a class="btn btn-outline-secondary mr-1"
+            <a class="btn btn-outline-secondary mr-1 btn-perso"
                 href="{{ path('app_logout') }}">Se déconnecter</a>
           {% else %}
-            <a class="btn btn-outline-secondary mr-1" href="{{ path('app_login') }}">Connexion</a>
-            <a class="btn btn-outline-secondary mr-1" href="{{ path('app_register') }}">Inscription</a>
+            <a class="btn btn-outline-secondary  btn-perso" href="{{ path('app_login') }}">Connexion</a>
+            <a class="btn btn-outline-secondary  btn-perso" href="{{ path('app_register') }}">Inscription</a>
           {% endif %}
 
    
    
       </ul>
+      </div>
+
+
+      
     </div>
   </div>
 </nav>
