@@ -3,9 +3,7 @@
 
 {% block body %}
 
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success" role="alert">{{ message }}</div>
-    {% endfor %}
+
  <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
     <div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
@@ -16,7 +14,7 @@
           <p style="color:white">Sur Place - A emporter - Livraison</p>
 
           <div class="btns">
-            <a href="#menu" class="btn-menu animated fadeInUp scrollto">Notre Menu</a>
+            <a href="#menu" class="btn-menu animated fadeInUp scrollto">La carte</a>
             <a href="{{path('products_index')}}" class="btn-book animated fadeInUp scrollto">Commander</a>
           </div>
         </div>
@@ -29,6 +27,30 @@
   </section><!-- End Hero -->
 
   <main id="main">
+
+
+    <section id="why-us" class="why-us">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Actualités</h2>
+          <p >Dernières nouvelles</p>
+        </div>
+
+        <div class="row">
+            {% for post in posts|reverse|slice(0,3) %}
+            <div class="col-lg-4">
+              <div class="box" data-aos="zoom-in" data-aos-delay="100">
+                <span>{{post.createdAt|date('d/m/Y h:m')}}</span>
+                <h4>{{post.name}}</h4>
+                <p>{{post.content| raw }}</p>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
 
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
@@ -53,53 +75,13 @@
       </div>
     </section><!-- End About Section -->
 
-    <!-- ======= Why Us Section ======= -->
-    <section id="why-us" class="why-us">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Pourquoi nous</h2>
-          <p>Une raison pour venir dans notre restaurant</p>
-        </div>
-
-        <div class="row">
-
-          <div class="col-lg-4">
-            <div class="box" data-aos="zoom-in" data-aos-delay="100">
-              <span>01</span>
-              <h4>Des plats d'ailleurs</h4>
-              <p>Si vous voulez goûter d'autre saveurs qu'au quotidien, nous avons un large choix à vous proposez</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 mt-4 mt-lg-0">
-            <div class="box" data-aos="zoom-in" data-aos-delay="200">
-              <span>02</span>
-              <h4>Fait maison</h4>
-              <p>Des plats fait maison avec l'expérience culinaire de notre proprietaire vietnamienne. Des plats végétariens et halal.</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 mt-4 mt-lg-0">
-            <div class="box" data-aos="zoom-in" data-aos-delay="300">
-              <span>03</span>
-              <h4>Un large choix</h4>
-              <p>Nous vous proposons des spécialités tel que le bo bum, mi xao et des banh mi. Vous pouvez concocté le plat à votre guise.</p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Why Us Section -->
-
     <!-- ======= Menu Section ======= -->
     <section id="menu" class="menu section-bg">
       <div class="container" data-aos="fade-up">
 
         <div  id="menu" class="section-title">
           <h2>Menu</h2>
-          <p>Nous vous proposons un large choix dans le menu</p>
+          <p>Nous vous proposons un large choix</p>
         </div>
 
         <div class="row" data-aos="fade-up" data-aos-delay="100">
@@ -119,7 +101,7 @@
         <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
 
           <div class="col-lg-6 menu-item filter-plat">
-            <img src="assets/img/menu/lobster-bisque.jpg" class="menu-img" alt="">
+            <img src="{{ asset('uploads/bobun.jpeg') }}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Bo Bun</a><span>12€90</span>
             </div>
@@ -130,7 +112,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-plat">
-            <img src="assets/img/menu/bread-barrel.jpg" class="menu-img" alt="">
+            <img src="{{ asset('uploads/mixao.jpeg') }}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Mi Xao</a><span>12€90</span>
             </div>
@@ -140,7 +122,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-plat">
-            <img src="assets/img/menu/bread-barrel.jpg" class="menu-img" alt="">
+            <img src="{{ asset('uploads/riz.jpeg') }}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Riz sauté</a><span>12€90</span>
             </div>
@@ -151,7 +133,7 @@
 
 
           <div class="col-lg-6 menu-item filter-specialty">
-            <img src="assets/img/menu/cake.jpg" class="menu-img" alt="">
+            <img src="{{ asset('uploads/banhmi.jpeg') }}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Banh mi</a><span>7€90€</span>
             </div>
@@ -161,7 +143,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-specialty">
-            <img src="assets/img/menu/cake.jpg" class="menu-img" alt="">
+            <img src="{{ asset('uploads/banhmi.jpeg') }}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Bánh mì Tofu à la citronnelle</a><span>7€90</span>
             </div>
@@ -171,7 +153,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-specialty">
-            <img src="assets/img/menu/caesar.jpg" class="menu-img" alt="">
+            <img src="{{ asset('uploads/banhbao.jpeg') }}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Banh bao</a><span>5€50</span>
             </div>
@@ -181,7 +163,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-specialty">
-            <img src="assets/img/menu/caesar.jpg" class="menu-img" alt="">
+            <img src="{{ asset('uploads/banhbao.jpeg') }}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Bánh bao veggie</a><span>5€50</span>
             </div>
@@ -191,7 +173,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-starters">
-            <img src="assets/img/menu/tuscan-grilled.jpg" class="menu-img" alt="">
+            <img src="{{ asset('uploads/nem.png') }}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Nem aux légumes</a><span>1€50</span>
             </div>
@@ -201,7 +183,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-starters">
-            <img src="assets/img/menu/spinach-salad.jpg" class="menu-img" alt="">
+            <img src="{{ asset('uploads/nem.png') }}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Nem au poulet</a><span>1€50</span>
             </div>
@@ -211,7 +193,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-starters">
-            <img src="assets/img/menu/mozzarella.jpg" class="menu-img" alt="">
+            <img src="{{ asset('uploads/roll.jpeg') }}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Rouleau de printemps aux crevettes</a><span>4€50</span>
             </div>
@@ -221,7 +203,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-starters">
-            <img src="assets/img/menu/greek-salad.jpg" class="menu-img" alt="">
+            <img src="{{ asset('uploads/samoussa.jpeg') }}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Samoussa aux légumes</a><span>1€50</span>
             </div>
@@ -233,7 +215,7 @@
 
 
           <div class="col-lg-6 menu-item filter-bbtea">
-            <img src="assets/img/menu/spinach-salad.jpg" class="menu-img" alt="">
+            <img src="{{ asset('uploads/bigbbtea.jpg') }}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Grand Bubble Tea</a><span>7€90</span>
             </div>
@@ -244,7 +226,7 @@
 
 
           <div class="col-lg-6 menu-item filter-bbtea">
-            <img src="assets/img/menu/spinach-salad.jpg" class="menu-img" alt="">
+            <img src="{{ asset('uploads/smallbbtea.jpg') }}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Petit Bubble Tea</a><span>6€90</span>
             </div>
@@ -254,7 +236,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-dessert">
-            <img src="assets/img/menu/lobster-roll.jpg" class="menu-img" alt="">
+            <img src="{{ asset('uploads/coco.jpeg') }}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Perles de Tapioca au lait de Coco Banane</a><span>4€60</span>
             </div>
@@ -264,7 +246,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-dessert">
-            <img src="assets/img/menu/spinach-salad.jpg" class="menu-img" alt="">
+            <img src="{{ asset('uploads/nem.png') }}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Nems aux Chocolat et Coco</a><span>4€60</span>
             </div>
@@ -274,7 +256,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-dessert">
-            <img src="assets/img/menu/spinach-salad.jpg" class="menu-img" alt="">
+            <img src="{{ asset('uploads/mangue.jpeg') }}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Riz gluant au lait de coco avec mangue</a><span>4€60</span>
             </div>
@@ -292,7 +274,7 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Spécialitée</h2>
+          <h2>Spécialitées</h2>
           <p>Nos saveurs inédites</p>
         </div>
 
@@ -326,7 +308,7 @@
                     <p>Vermicielles de riz, crudités, herbes aromatiques et viande avec sauce nuoc mâm Les viandes : Bœuf citronnelle, Bœuf oignons, Poulet citronnelle, Poulet char siu ou Crevettes saté. Les nems : Nem au poulet ou Nem légumes Les garnitures : Pousses de soja, salade, menthe, coriandre, concombre, ciboulette, oignon frits, cacahuètes grillées, carottes marinées, piment frais.</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="assets/img/specials-1.png" alt="" class="img-fluid">
+                    <img src="{{ asset('uploads/bobun.jpeg') }}" alt="" class="img-fluid">
                   </div>
                 </div>
               </div>
@@ -338,7 +320,7 @@
                     <p>Mì signifie « nouille de blé » et xào, « sauté ». Pour ceux et celles qui n'ont pas beaucoup de temps pour cuisiner mais qui veulent toujours avoir des repas faits maison à la fois délicieux et nutritifs, voici le plat idéale de nouilles sautées à la vietnamienne. Elle est composée de nouilles aux œufs (Ramen), de légumes et de viande. Elle peut être déclinée en plat « Vegan ».</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="assets/img/specials-2.png" alt="" class="img-fluid">
+                    <img src="{{ asset('uploads/mixao.jpeg') }}" alt="" class="img-fluid">
                   </div>
                 </div>
               </div>
@@ -350,7 +332,7 @@
                     <p>Le bánh bao est un pain farcis à la vapeur. La pâte contient du lait et la farce contient généralement de l'œuf dur et de la saucisse. Il est classé dans les bánh, signifiant « gâteau », un ensemble de plats très variés de la cuisine vietnamienne.</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="assets/img/specials-3.png" alt="" class="img-fluid">
+                    <img src="{{ asset('uploads/banhbao.jpeg') }}" alt="" class="img-fluid">
                   </div>
                 </div>
               </div>
@@ -362,7 +344,7 @@
                     <p>Bánh mì est un mot vietnamien qui signifie « pain de blé ». Le pain, et plus particulièrement la baguette, a été introduit au Viêt Nam pendant l’époque coloniale française.</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="assets/img/specials-4.png" alt="" class="img-fluid">
+                    <img src="{{ asset('uploads/banhmi.jpeg') }}" alt="" class="img-fluid">
                   </div>
                 </div>
               </div>
@@ -374,8 +356,8 @@
                     <p>Spécificité : les grosses perles de tapioca brunes qui tapissent le fond du verre de Bubble tea rendent cette boisson unique. « Chewy » de l’intérieur et légèrement sucrées, vous aspirerez ces perles à l’aide d’une paille XXL ! </p>
                     <p>Personnalité : lacté, le Bubble tea est d’un tempérament doux et accompagne parfaitement les perles de tapioca légèrement sucrées. Au sirop de fruit, le Bubble tea devient synonyme de fraîcheur et relève à merveille la douceur des perles.</p>
                   </div>
-                  <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="assets/img/specials-5.png" alt="" class="img-fluid">
+                  <div class="col-lg-4 text-center order-1 order-lg-2" style="margin: 45px auto;">
+                    <img src="{{ asset('uploads/bbtea.jpeg') }}" alt="" class="img-fluid">
                   </div>
                 </div>
               </div>
@@ -392,8 +374,8 @@
 
       <div class="container" data-aos="fade-up">
         <div class="section-title">
-          <h2>Gallerie</h2>
-          <p>Quelque photos de notre Restaurant</p>
+          <h2>Galerie</h2>
+          <p>Quelques photos de notre restaurant</p>
         </div>
       </div>
 
@@ -403,33 +385,25 @@
 
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-              <a href="assets/img/gallery/com.jpeg" class="gallery-lightbox" data-gall="gallery-item">
                 <img src="assets/img/gallery/com.jpeg" alt="" class="img-fluid">
-              </a>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-              <a href="assets/img/gallery/bubble.jpeg" class="gallery-lightbox" data-gall="gallery-item">
-                <img src="assets/img/gallery/bubble.jpeg" alt="" class="img-fluid">
-              </a>
+                <img src="assets/img/gallery/bubble.jpeg" alt="" class="img-fluid" style="height: 296px;">
             </div>
           </div>
 
          <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-              <a href="assets/img/gallery/banhbao.jpeg" class="gallery-lightbox" data-gall="gallery-item">
                 <img src="assets/img/gallery/banhbao.jpeg" alt="" class="img-fluid">
-              </a>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-              <a href="assets/img/gallery/index5.png" class="gallery-lightbox" data-gall="gallery-item">
-                <img src="assets/img/gallery/index5.png" alt="" class="img-fluid">
-              </a>
+                <img src="assets/img/gallery/index5.png" alt="" class="img-fluid" style="height: 296px;">
             </div>
           </div>
 
@@ -437,34 +411,26 @@
 
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-              <a href="assets/img/gallery/deco.jpeg" class="gallery-lightbox" data-gall="gallery-item">
-                <img src="assets/img/gallery/deco.jpeg" alt="" class="img-fluid">
-              </a>
+                <img src="assets/img/gallery/deco.jpeg" alt="" class="img-fluid" style="height: 296px;">
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-              <a href="assets/img/gallery/bobun.jpeg" class="gallery-lightbox" data-gall="gallery-item">
                 <img src="assets/img/gallery/bobun.jpeg" alt="" class="img-fluid">
-              </a>
             </div>
           </div>
 
 
         <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-              <a href="assets/img/gallery/devant1.jpeg" class="gallery-lightbox" data-gall="gallery-item">
-                <img src="assets/img/gallery/devant1.jpeg" alt="" class="img-fluid">
-              </a>
+                <img src="assets/img/gallery/formule1.jpg" alt="" class="img-fluid" style="height: 297px;">
             </div>
           </div>
 
-          <div class="col-lg-3 col-md-4">
+          <div class="col-lg-3 col-md-5">
             <div class="gallery-item">
-              <a href="assets/img/gallery/mixao.jpeg" class="gallery-lightbox" data-gall="gallery-item">
                 <img src="assets/img/gallery/mixao.jpeg" alt="" class="img-fluid">
-              </a>
             </div>
           </div>
 
@@ -479,7 +445,7 @@
 
         <div class="section-title">
           <h2>Notre staff</h2>
-          <p>Pour vous familiarisez</p>
+          {# <p>Pour vous familiariser</p> #}
         </div>
 
         <div class="row">
@@ -500,198 +466,14 @@
               </div>
             </div>
           </div>
-{# 
-          <div class="col-lg-4 col-md-6">
-            <div class="member" data-aos="zoom-in" data-aos-delay="200">
-              <img src="assets/img/chefs/chefs-2.jpg" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Sarah Jhonson</h4>
-                  <span>Patissier</span>
-                </div>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6">
-            <div class="member" data-aos="zoom-in" data-aos-delay="300">
-              <img src="assets/img/chefs/chefs-3.jpg" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>William Anderson</h4>
-                  <span>Cook</span>
-                </div>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div> #}
-
         </div>
 
       </div>
     </section><!-- End Chefs Section -->
 
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
-      <div class="container" data-aos="fade-up">
 
-        <div class="section-title">
-          <h2>Contact</h2>
-          <p>Contact nous</p>
-        </div>
-      </div>
-
-      <div data-aos="fade-up">
- 
-      <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2620.91812892097!2d2.4913123155579386!3d48.93600117929514!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xdb1e0edce514000c!2sLe%20Petit%20Vietnamien!5e0!3m2!1sfr!2sfr!4v1633088740246!5m2!1sfr!2sfr" frameborder="0" allowfullscreen="" loading="lazy"></iframe>
-      </div>
-
-      <div class="container" data-aos="fade-up">
-
-        <div class="row mt-5">
-
-          <div class="col-lg-4">
-            <div class="info">
-              <div class="address">
-                <i class='bx bx-home-heart bx-flip-horizontal' ></i>                <h4>Location:</h4>
-                <p>50 Av. Anatole France, 93600 Aulnay-sous-Bois, FRANCE</p>
-              </div>
-
-              <div class="open-hours">
-                <i class='bx bx-time'></i>
-                <h4>Horaires d'ouverture:</h4>
-                <p>
-                  Lundi-Vendredi:<br>
-                  11:30 - 14:00<br>
-                  18:30 - 21:30
-                </p>
-              </div>
-
-              <div class="email">
-                <i class='bx bxs-envelope' ></i>
-                <h4>Email:</h4>
-                <p>lepetitvietnamien93@gmail.com</p>
-              </div>
-
-              <div class="phone">
-                <i class='bx bxs-phone'></i>
-                <h4>Téléphone :</h4>
-                <p>01 41 70 21 89</p>
-              </div>
-
-            </div>
-
-          </div>
-
-          <div class="col-lg-8 mt-5 mt-lg-0">
-
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Votre nom" required>
-                </div>
-                <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Votre Email" required>
-                </div>
-              </div>
-              <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Sujet" required>
-              </div>
-              <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="8" placeholder="Message" required></textarea>
-              </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Votre message a été envoyé. Merci !</div>
-              </div>
-              <div class="text-center"><button type="submit">Envoyer le message</button></div>
-            </form>
-
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Contact Section -->
+    <div id="preloader"></div>
 
   </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-lg-3 col-md-6">
-            <div class="footer-info">
-              <h3>Le Petit Vietnamien</h3>
-              <p>
-                50 Av. Anatole France <br>
-                93600 Aulnay-sous-Bois, France<br><br>
-                <strong>Téléphone:</strong>01 41 70 21 89<br>
-                <strong>Email:</strong> lepetitvietnamien93@gmail.com<br>
-              </p>
-              <div class="social-links mt-3">
-                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-2 col-md-6 footer-links">
-
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Accueil</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">A propos</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">CGV</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Mentions Légales</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Notre Newsletter</h4>
-            <p>Recevez toutes les actualités et les promotions en avant-première</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="S'inscrire">
-            </form>
-
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="copyright">
-        &copy; <strong><span>Le Petit Vietnamien</span></strong>
-      </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/restaurantly-restaurant-template/ -->
-      </div>
-    </div>
-  </footer><!-- End Footer -->
-
-  <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class='bx bx-up-arrow-alt'></i></a>
-
 
 {% endblock %}

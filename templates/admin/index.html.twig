@@ -1,20 +1,76 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}BIENVENUE ADMIN!{% endblock %}
+{% block title %}Mon compte{% endblock %}
 
 {% block body %}
-    welcome dans l'administration
-    {% if app.user %}
-        <div class="mb-3">
-            You are logguer en tant que {{ app.user.username }}
-        </div>
+      {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+      {% endfor %}
+<div class="container w-75 bg-light mt-3 ">
+  <div class=" pt-3 pb-3">
+    <h1 class="color-g">Bienvenue dans l'espace administration</h1>
+  </div>
+   {% if app.user %}
+            <div >
+              Vous êtes connecté(e) en tant que {{ app.user.username }}
+            </div>
     {% endif %}
-        <a href="{{ path('admin_utilisateurs') }}"><button class="btn btn-warning" >Mon profil</button></a>
+    
+    <hr>
 
-        <a href="{{ path('newsletters_prepare') }}"><button class="btn btn-success" >Ecrire une newsletter</button></a>
-        <a href="{{ path('newsletters_list') }}"><button class="btn btn-success" >Envoyer une newsletter</button></a>
+   <div class="row">
+        <div class=" col-md-4">
+            <div class="account-item">
+                <a href="{{ path('admin_orders') }}"><button class="btn btn-outline-dark"><i class='bx bx-shopping-bag'></i>  Liste des commandes</button></a>
+            </div>
+        </div>  
 
-        <a href="{{ path('admin_utilisateurs') }}"><button class="btn btn-danger" >Liste de tout les utilisateurs</button></a>
-        <a href="{{ path('admin_orders') }}"><button class="btn btn-danger" >Liste des commandes</button></a>
+          <div class=" col-md-4">
+            <div class="account-item">
+               <a href="{{ path('admin_utilisateurs') }}">                  
+                <button class="btn btn-outline-dark">                
+                 <i class='bx bx-book-content'></i>   Liste de tout les utilisateurs
+                </button>
+                </a>
+            </div>
+        </div>      
+      </div>
+
+    <hr>
+
+    <div class="row">
+        <div class=" col-md-4">
+            <div class="account-item">
+                <a href="{{ path('newsletters_list') }}">
+                   <button class="btn btn-outline-dark"><i class='bx bx-envelope' ></i>  Liste des newsletters</button></a>
+            </div>
+        </div>
+        <div class=" col-md-4">
+            <div class="account-item">
+                <a href="{{ path('newsletters_prepare') }}"><button class="btn btn-outline-dark"> <i class='bx bx-pencil' ></i>  Rédiger une newsletter</button></a>
+            </div>
+        </div>
+    </div>
+       
+    <hr>
+    
+    <div class="row">
+        <div class=" col-md-4">
+            <div class="account-item">
+                <a href="{{ path('create_post') }}"><button class="btn btn-outline-dark"> <i class='bx bx-pencil' ></i>  Rédiger une actualité</button></a>
+            </div>
+        </div>
+        <div class=" col-md-4">
+            <div class="account-item">
+                <a href="{{ path('admin_list_all_products') }}"><button class="btn btn-outline-dark"> <i class='bx bx-pencil' ></i>Gestion des produits</button></a>
+            </div>
+        </div>
+    </div>
+    </div>
+    <hr>
+
+</div>
 
 {% endblock %}

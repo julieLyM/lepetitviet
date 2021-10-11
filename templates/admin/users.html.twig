@@ -5,10 +5,11 @@
 {% block body %}
 
     <div class="py-5 bg-light">
-        <div class="container">
+        <div class="container table-responsive">
             <div class="row">
                 <h2>liste des users :</h2>
 
+                <div><a href="{{ path('admin_index') }}"> <i class='bx bxs-arrow-to-left'></i> Retour</a></div>
 
                 <table class="table" style="text-align:center;">
                     <thead>
@@ -45,12 +46,12 @@
                             </td>
                             <td>
                                 <a class="btn" href="{{ path('admin_utilisateur_modifier', { 'id' : user.id }) }}">
-                                    <img src="{{asset('img/icone/modifier.png')}}" alt ="Modifier" height="20px">
+                                    <i class='bx bx-pencil'></i>
                                 </a>
                             </td> 
                             <td>
                                 <a href="{{ path('admin_utilisateur_supp', {'id': user.id}) }}">
-                                  <img src="{{asset('img/icone/delete.png')}}" alt ="Supprimer" height="20px">
+                                    <i class='bx bx-trash' ></i>                               
                                 </a>
                             </td>
                         </tr>

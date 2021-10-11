@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+  <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Contact</h2>
+          <p>Avoir une communication ouverte est l’une des valeurs principales de notre restaurant.</p>
+        </div>
+      </div>
+
+      
+      <div data-aos="fade-up">
+        <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2620.91812892097!2d2.4913123155579386!3d48.93600117929514!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xdb1e0edce514000c!2sLe%20Petit%20Vietnamien!5e0!3m2!1sfr!2sfr!4v1633088740246!5m2!1sfr!2sfr" frameborder="0" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+
+      <div class="container" data-aos="fade-up">
+        <div class="row mt-5">
+          <div class="col-lg-4">
+            <div class="info">
+              <div class="address">
+                <i class='bx bx-home-heart bx-flip-horizontal' ></i>                <h4>Location:</h4>
+                <p>50 Av. Anatole France, 93600 Aulnay-sous-Bois, FRANCE</p>
+              </div>
+
+              <div class="open-hours">
+                <i class='bx bx-time'></i>
+                <h4>Horaires d'ouverture:</h4>
+                <p>
+                  Lundi-Vendredi:<br>
+                  11:30 - 14:00<br>
+                  18:30 - 21:30
+                </p>
+              </div>
+
+              <div class="email">
+                <i class='bx bxs-envelope' ></i>
+                <h4>Email:</h4>
+                <p>lepetitvietnamien93@gmail.com</p>
+              </div>
+
+              <div class="phone">
+                <i class='bx bxs-phone'></i>
+                <h4>Téléphone :</h4>
+                <p>01 41 70 21 89</p>
+              </div>
+
+            </div>
+          </div>
+
+        <div class="col-lg-8 mt-5 mt-lg-0">
+            {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% if not our_form.vars.valid %}
+            <div class="alert alert-danger">
+                Attention erreur
+            </div>
+            {% endif %}
+            <div id="contactForm" class="mt-4">
+            {{ form_start(our_form) }}
+            <div class="row">
+                <div class="col">{{ form_row(our_form.firstname) }}</div>
+                <div class="col">{{ form_row(our_form.lastname) }}</div>
+            </div>
+            <div class="row">
+                <div class="col">{{ form_row(our_form.email) }}</div>
+            </div>
+                {{ form_rest(our_form) }}
+            <div class="form-group" style="margin:10px auto;text-align:center;">
+                <button class="btn btn-gold">Envoyer</button>
+            </div>
+            {{ form_end(our_form) }}
+
+            </div>
+        </div>
+    </div>
+</section><!-- End Contact Section -->
+
+
+{% endblock %}
+

@@ -3,38 +3,49 @@
 {% block title %}Hello CartController!{% endblock %}
 
 {% block body %}
-<h1>panier</h1>
+<h1 class="color-g">Panier</h1>
+
+{% if items | length ==  0 %}
+<a href="{{ path('products_index') }}">
+<h4>Commander des produits</h4></a>
+{% else %}
 <a href="{{ path('products_index') }}">
 <h4>Continuer les achats</h4></a>
+{% endif %}
+
+
+<div class="container table-responsive">
 {% if items | length > 0 %}
-<table class="table">
+<table class="table ">
     <thead>
         <tr>
             <th>Produit</th>
+             <th></th>
             <th>Prix</th>
             <th>Quantité</th>
             <th>Total</th>
-            <th></th>
+            <th>Supprimé</th>
         </tr>
     </thead>
     <tbody>
     {% for item in items %}
         <tr>
             <td>{{item.product.name}}</td>
-            <td>{{item.product.price}}</td>
+             <td></td>
+            <td>{{item.product.price}}€</td>
                  <td>
                     <a href="{{ path('cart_decrease', {'id': item.product.id}) }}">
-                        -
+                        <i class='bx bx-minus-circle'></i>
                     </a>
                      {{item.quantity }}
                     <a href="{{ path('cart_add', {'id': item.product.id}) }}">
-                        +
+                        <i class='bx bx-plus-circle'></i>
                     </a>
                 </td>
             <td>{{item.product.price * item.quantity}}</td>
             <td>
-                <a href="{{path('cart_remove', {'id': item.product.id})}}" class="btn btn-danger btn-sm">
-                   supp
+                <a href="{{path('cart_remove', {'id': item.product.id})}}">
+                   <i class='bx bxs-trash'></i>
                 </a>
             </td>
 
@@ -43,17 +54,22 @@
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="3" class="text-end">Total : </td>
-            <td>{{ total }}</td>
+            <td class="text-end text-danger" ><p class="text-sm-end">Après validation de votre achat, veuillez récuperer votre commande avant </br>la fermeture du restaurant soit : à 14h30 ou à 21h30</p></td>
+
+            <td class="text-end text-primary" >Total : </td>
+            <td class="text-primary">{{ total }}€</td>
 
             <h4>
                 {% if app.user %}
 
              <td><a href="{{ path('order_index') }}" class="btn btn-success btn-block mt-2">Valider la reservation</a></td>
+            <td> <a href="{{path('cart_remove_all')}}"><i class='bx bx-trash-alt'></i> Vider tout le panier</td>
+
             {% else %}
                 <td>
-                <p class="d-block title-PageProduct">Pour réserver vous devez vous connecter</p>
-                <a class="btn btn-warning mr-1" href="{{ path('app_login') }}">Connexion</a>
+                <p class="d-block title-PageProduct fs-6">Pour commander, vous devez</br>
+                <a href="{{ path('app_login') }}">connecter</a> ou vous <a  href="{{ path('app_register') }}"> inscrire</a>.</small>
+
                 </td>
             {% endif %}
             </h4>
@@ -64,7 +80,9 @@
     </tfoot>
 </table>
 {% else %}
-    <p>c'est vide</p>
+<div class="m-5 text-center">
+    <h2 style="color: #7c0404">Le panier est vide</h2>
+</div>
 {% endif %}
-
+</div>
 {% endblock %}

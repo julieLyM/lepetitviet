@@ -3,9 +3,9 @@
 {% block title %}Réinitialiser le mot de passe par email{% endblock %}
 
 {% block body %}
-    <div class="col-md mt-5 d-flex justify-content-center">                  
+    <div class="col-md m-5 d-flex justify-content-center">                  
         <div class="card text-center" style="width: 40rem;">
-            <h1 class="h3 m-3 font-weight-normal" style="color: goldenrod;">Générer un nouveau mot de passe</h1>
+            <h1 class=" m-3 font-weight-normal color-g">Générer un nouveau mot de passe</h1>
             <div class="card-body">
                 <p>Si votre compte concorde avec l'email entrer, vous aller recevoir un email où vous pourrez réinitialiser un nouveau mot de passe.</p>  
                 <p> Le lien expire dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</p>

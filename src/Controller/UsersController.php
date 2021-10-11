@@ -39,10 +39,11 @@ class UsersController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('message','utilisateur modifié avec succès');
-            return $this->redirectToRoute('admin_utilisateurs');
+            
+            return $this->redirectToRoute('users');
         }
 
-        return $this->render('users/editprofil.html.twig' , [
+        return $this->render('users/edit_profil.html.twig' , [
             'userForm' => $form->createView()
         ]);
     }

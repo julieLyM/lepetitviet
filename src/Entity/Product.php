@@ -6,6 +6,7 @@ use App\Repository\ProductRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ProductRepository::class)
@@ -21,21 +22,24 @@ class Product
 
     /**
      * @ORM\Column(type="string", length=80)
+     * @Assert\NotBlank(message="Vous avez oublié le nom du produit !")
+     * @Assert\Length(max=80, maxMessage="Attention, votre titre ne doit pas depasser {{ limit }} caractères.")     
      */
     private $name;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="boolean",nullable=true)
      */
     private $stock;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="Vous avez oublié le prix !")    
      */
     private $price;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer",nullable=true)
      */
     private $quantity;
 
@@ -45,7 +49,11 @@ class Product
     private $reference;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Image(
+     *     disallowEmptyMessage="Vous devez choisir une image",
+     *     mimeTypesMessage="vérifiez le format de votre image",
+     *     maxSize="2M", maxSizeMessage="Votre image est trop lourde, 2M max" )
      */
     private $image;
 
@@ -65,7 +73,9 @@ class Product
     private $updatedAt;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Vous avez oublié une description!")
+     * @Assert\Length(max=255, maxMessage="Attention, votre description ne doit pas depasser {{ limit }} caractères.")     
      */
     private $description;
 
@@ -159,7 +169,7 @@ class Product
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage($image): self
     {
         $this->image = $image;
 

@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block title %}Creation d'une actualité{% endblock %}
+
+{% block body %}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+<div class="container">
+    <div class="w-50 mx-auto mt-4">
+    <h1 class="color-g m-3 text-center">Création d'une actualité</h1>
+    <div><a href="{{ path('admin_index') }}"> <i class='bx bxs-arrow-to-left'></i> Retour</a></div>
+
+        {{form_start(form)}}
+       <h5> {{form_row(form.name)}}</h5>
+        <h5>Le contenu à rediger</h5>
+        <div class="mb-3" id="editor"></div>
+        {{form_row(form.content)}}
+        
+        <button type="submit" class="btn btn-gold mb-3 mx-auto text-center">Envoyer</button>
+    {{form_end(form)}}
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('ckeditor5/ckeditor.js') }}" defer></script>
+    <script src="{{ asset('js/ckeditor.js') }}" defer></script>
+{% endblock %}

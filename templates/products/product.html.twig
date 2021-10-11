@@ -9,30 +9,33 @@
             <h3 class="title-PageProduct">Nos produits</h3>
 
             <div class="row product-container">
+                <a href="{{ path('products_index') }}"> <i class='bx bxs-arrow-to-left'></i> Retour</a>
+
                 {% for product in category.products %}
-                    <div class="col-md-4 mt-4">
-                        <div class="card">
+                    <div class="col-md-4 mt-4" >
+                        <div class="card m-3">
                             <div class="position-relative">
                                 <a href="">
-                                    <img src="/uploads/images/product/{{ product.image }}" alt="{{ product.name }}" class="img-fluid img-thumbnai card-img-tol"></a>
+                                    <img src="/uploads/images/{{ product.image }}" alt="{{ product.name }}" width="100%" style="height:250px;" class="img-fluid img-thumbnai card-img-tol"></a>
                                 <div class="card-img-overlay d-flex justify-content-end align-items-end">
                                     <button type="button" class="btn btn-light rounded-circle" data-toggle="button" aria-pressed="false" autocomplete="off"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title"><small><span class="d-block title-PageProduct">Nom du produit : </span>{{ product.name }}</small></h5>
-                                <span class="d-block"><span class="d-block title-PageProduct">Prix : </span>{{ (product.price) }} €</span>
-                                <div class="row m-3">
-
-                                    {# <a href="{{ path('products_detail', {
-                                        'category': product.category.slug,
-                                        'slug': product.slug,
-                                        'id': product.id
-                                        }) }}" class="btn btn-primary">Lire la suite</a> #}
-                                    <a href="{{ path("cart_add", {'id': product.id} ) }}"><button class="btn btn-warning">ajouter</button></a>
-
-                                </div>
-                                
+                                <h6 class="card-title">Nom du produit : {{ product.name }}</h6> 
+                                <span class="d-block"><span class="d-block title-PageProduct">Prix : {{ product.price }} € </span></span>
+                                <span class="d-block"><span class="d-block title-PageProduct">
+                                    {% if  product.stock  == 1  %}
+                                    <small class="text-success">Produit disponible</small>
+                                    {% else %}
+                                    <small class="text-danger">Produit non disponible</small>
+                                    {% endif %}
+                                    </span></span>
+                                    {% if  product.stock  == 1  %}
+                                        <a href="{{ path("cart_add", {'id': product.id} ) }}"><button class="btn btn-warning">Ajouter</button></a>
+                                    {% else %}
+                                        <button class="btn btn-warning text-decoration-line-through" disabled >Ajouter</button>
+                                    {% endif %}
                             </div>
                         </div>
                     </div>
@@ -40,7 +43,6 @@
                 {% endfor %}
             </div>
 
-            <button class="btn btn-primary m-3 btn-sm"><a href="{{ path('products_index') }}">Retour</a></button>
 
         </div>
     </div>

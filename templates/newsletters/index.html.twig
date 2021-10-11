@@ -1,7 +1,17 @@
-{% extends 'base.html.twig' %}
-{% block title %}Newsletter{% endblock %}
+
+ {% extends 'base.html.twig' %}
+
+{% block title %}Formulaire!{% endblock %}
+
 
 {% block body %}
-    <h1>inscription de la newsletters</h1>
-    {{form(form)}}
+    <div class="container">
+         <div class="w-50 mx-auto mt-4">
+        <h1 class="color-g">Inscription de la newsletter</h1>
+       
+            <p>Recevez toutes les actualités et les promotions en avant-première</p>
+                {{form(form)}}
+
+        </div>
+    </div>
 {% endblock %}

@@ -19,12 +19,12 @@ class NewslettersUsersType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class)
-            ->add('categories', EntityType::class, [
-                'class' => Categories::class,
-                'choice_label' => 'name',
-                'multiple' => true,
-                'expanded' => true
-            ])
+             ->add('categories', EntityType::class, [
+                 'class' => Categories::class,
+                 'choice_label' => 'name',
+                 'multiple' => true,
+                 'expanded' => true
+             ])
             ->add('is_rgpd', CheckboxType::class, [
                 'constraints' => [
                     new ConstraintsIsTrue([

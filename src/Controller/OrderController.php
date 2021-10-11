@@ -46,6 +46,7 @@ class OrderController extends AbstractController
                 $orderDetails->setProduct($item['product']);
 
                 $em =$this->getDoctrine()->getManager();
+
                 $em->persist($orderDetails);
             }
 

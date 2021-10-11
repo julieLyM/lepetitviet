@@ -5,8 +5,6 @@
 {% block body %}
     <div class="container w-75">
     <h1>Mes commandes</h1>
-
-    C'est dans cet espace que vous allez pouvoir gérer toutes vos commandes<br>
     <hr>
     <a href="{{ path('users') }}"> Retour</a><br>
 
@@ -43,7 +41,7 @@
                 </td>
                 <td>{{ order.createdAt|date('d/m/Y')}}</td>
                 <td>{{ (order.amount)|number_format(2, ',', '.') }} €</td>
-                <td class="text-right"><a href="">Voir ma commande</a></td>
+                {# <td class="text-right"><a href="">Voir ma facture</a></td> #}
                 {% endif %}
                 {% endfor %}
             </tr>

@@ -3,8 +3,13 @@
 {% block title %}Liste des Newsletters{% endblock %}
 
 {% block body %}
-    <h1>Liste des newsletters</h1>
-    <table>
+
+
+<div class="container table-responsive">
+    <h1 class="mt-4" >Liste des newsletters</h1>
+    <div><a href="{{ path('admin_index') }}"> <i class='bx bxs-arrow-to-left'></i> Retour</a></div>
+
+<table class="table mt-4">
         <thead>
             <tr>
                 <th>ID</th>
@@ -34,5 +39,5 @@
         </tbody>
     </table>
 
-
+</div>
 {% endblock %}

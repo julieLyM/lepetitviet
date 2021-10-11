@@ -22,6 +22,18 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Playfair Display", serif;
 }
 
+.color-g {
+  color: goldenrod;
+}
+.btn-gold {
+  background-color: goldenrod; color: white; font-weight:500;
+}
+
+#editor{
+  background-color: white;
+  height:250px;
+}
+
 /*--------------------------------------------------------------
 # Preloader
 --------------------------------------------------------------*/
@@ -219,6 +231,13 @@ h1, h2, h3, h4, h5, h6 {
 .btn-perso {
   color: black;
 }
+.nav-link{
+  color: #cda45e !important;
+}
+
+.nav-link:hover{
+  color: #7c0404 !important;
+}
 
 .navbar {
   padding: 0;
@@ -241,6 +260,7 @@ h1, h2, h3, h4, h5, h6 {
   white-space: nowrap;
   transition: 0.3s;
   font-size: 14px;
+  
 }
 .navbar a i, .navbar a:focus i {
   font-size: 12px;
@@ -248,7 +268,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: 5px;
 }
 .navbar a:hover, .navbar .active, .navbar .active:focus, .navbar li:hover > a {
-  color: #d9ba85;
+  color: #7c0404;
 }
 .navbar .dropdown ul {
   display: block;
@@ -380,6 +400,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 .navbar-mobile .dropdown > .dropdown-active {
   display: block;
+}
+.hello{
+  margin: 0 10px;
 }
 
 /*--------------------------------------------------------------
@@ -535,6 +558,13 @@ h1, h2, h3, h4, h5, h6 {
   }
   .btn-perso {
     margin: 0 10px;
+  }
+  .btn-admin {
+    margin-bottom: 10px!important;
+  }
+
+  .hello{
+    display: none;
   }
 }
 @media (max-height: 500px) {
@@ -766,14 +796,16 @@ section {
 # Why Us
 --------------------------------------------------------------*/
 .why-us .box {
-  padding: 50px 30px;
+  padding: 30px;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
   transition: all ease-in-out 0.3s;
   background: #1a1814;
+  height:300px;
+
 }
 .why-us .box span {
   display: block;
-  font-size: 28px;
+  font-size: 16px;
   font-weight: 700;
   color: #cda45e;
 }
@@ -905,7 +937,7 @@ section {
   color: #cda45e;
 }
 .specials .nav-link.active {
-  color: #1a1814;
+  color: #fff!important;
   background: #cda45e;
   border-color: #cda45e;
 }
@@ -933,6 +965,10 @@ section {
     border: 0;
     padding: 15px;
   }
+  .mobile-nav-connex{
+    margin-top: 10px;
+  }
+
 }
 
 

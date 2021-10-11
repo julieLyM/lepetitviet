@@ -3,37 +3,56 @@
 {% block title %}BIENVENUE DANS TON PROFIL!{% endblock %}
 
 {% block body %}
-    {# welcome dans ton profil
-    {% if app.user %}
-        <div class="mb-3">
-            Tu es loggué en tant que {{ app.user.username }}
-
-        </div>
-
-
-        <a href="{{ path('newsletters_home') }}"><button class="btn btn-success" >inscription à la newsletter</button></a>
-        <a href="#"><button class="btn btn-warning" >tes commandes</button></a> #}
-
-    <div class="container mt-4 mb-4 p-3 d-flex justify-content-around">
-    <div class="card p-4">
-        <div class=" image d-flex flex-column justify-content-center align-items-center"> <button class="btn btn-secondary"> <img src="https://i.imgur.com/wvxPV9S.png" height="100" width="100" /></button> <span class="name mt-3">{{ app.user.firstname }}</span> <span class="idd">{{ app.user.username }}</span>
-            <div class="d-flex flex-row justify-content-center align-items-center gap-2"> <span class="idd1">adresse : {{ app.user.adress }} {{ app.user.zipcode }} {{ app.user.city }}</span> <span><i class="fa fa-copy"></i></span> </div>
-      <div class="d-flex flex-row justify-content-center align-items-center gap-2"> <span class="idd1">numero de telephone : {{ app.user.phone }}</span> <span><i class="fa fa-copy"></i></span> </div> 
-
-
-            <div class=" d-flex mt-2"><a href="{{ path('edit_profil', {id: app.user.id}) }}"><button class="btn btn-dark">Edit Profile</button></a></div>
-            <div class=" px-2 rounded mt-4 date "> <span class="join">Inscrit(e) le {{ app.user.createdAT|date("d M Y") }}</span> </div>
-        </div>
+<div class="container w-75 bg-light mt-3 ">
+    {% if is_granted('ROLE_ADMIN') %}
+    <div class="text-left pt-3 pb-3">
+        Vous êtes un administrateur <i class='bx bx-right-arrow-alt'></i> <a href="{{ path('admin_index', {id: app.user.id}) }}">acceder au back office </a><br>
     </div>
-        <div class="card p-4">
-        <div class=" image d-flex flex-column justify-content-center align-items-center"> 
-        <h2 class="name mt-3">MA COMMANDE</h2><button class="btn btn-secondary"> 
-        <img src="http://www.lavalleedelalune.fr/wp-content/uploads/2015/05/petit-panier.png" height="100" width="100" /></button> 
-
-            <div class=" d-flex mt-2"><a href="{{ path('user_order', {id: app.user.id}) }}"><button class="btn btn-dark">voir la commande</button></a></div>
-
+    {% endif %}
+      {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
         </div>
+      {% endfor %}
+    <h1 class="color-g">Mon compte</h1>
+
+    <h5>Bienvenue {{ app.user.firstname}} dans votre compte. <br> C'est dans cet espace que vous allez pouvoir gérer toutes vos informations personnelles<br>
+    </h5>
+    <hr>
+
+
+
+    <span><small class="font-weight-bold color-g">Nom et prénom : </small>{{ app.user.lastname}} {{ app.user.firstname}}</span></br>
+    <span><small class="font-weight-bold color-g">Date de naissance : </small>{{ app.user.birthday|date("d/m/Y")}}</span></br>
+    <span><small class="font-weight-bold color-g">Votre email : </small>{{ app.user.email}}</span></br>
+    <span><small class="font-weight-bold color-g">Votre telephone : </small>{{ app.user.phone}}</span> </br>
+    <span><small class="font-weight-bold color-g">Votre adresse : </small>{{ app.user.adress}} {{ app.user.zipcode}} {{ app.user.city}} </span></br>
+
+    <hr>
+
+    <div class="row">
+        <div class=" col-md-6">
+            <div class="account-item text-center">
+                <a href="{{ path('edit_profil', {id: app.user.id}) }}"> 
+                <button class="btn btn-outline-dark">                
+                    <i class='bx bx-face'></i>  Modifier mon profil
+                </button>
+                </a>
+            </div>
+        </div>
+        <div class=" col-md-6">
+            <div class="account-item text-center">
+                <a href="{{ path('user_order', {id: app.user.id}) }}">
+                    <button class="btn btn-outline-dark">
+                        <i class='bx bx-basket'></i>  Mes commandes
+                    </button>
+                </a>
+            </div>
+        </div>
+
+
     </div>
+    <hr>
 </div>
-{% endblock %}
 
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des produits{% endblock %}
+
+{% block body %}
+<div class="container table-responsive">
+
+        <h3 class="mt-4">Gestion des produits </h3>
+
+        <div><a href="{{ path('admin_index') }}"> <i class='bx bxs-arrow-to-left'></i> Retour</a></div>
+
+        <div class="text-center m-4 "><a class="badge bg-secondary" href="{{ path('admin_create_product') }}"><h3>Créer un nouveau produit</h3></a></div>
+
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th></th>
+                <th scope="col">Nom</th>
+                <th></th>
+                {# <th scope="col">Categorie</th> #}
+                <th scope="col">Image</th>
+                <th scope="col">Description</th>
+                <th scope="col">Crée le</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Modification</th>
+                <th scope="col">Suppression</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in items %}
+                <tr>
+                    <td class="badge badge-light">{{ item.id }}
+                    <td>
+                    <td>{{ item.name }}<br>
+                    <td>
+                    {# <td>{{ item.category }} </td> #}
+                    <td><img src="/uploads/images/{{ item.image }}" alt="{{ item.name }}" height="75px"></td>
+                    <td>{{ item.description }}
+
+                        {# .substr({{item.description}}, 0, 30 )."...<a href='#'>Lire la suite</a> #}
+
+                    </td>
+                    <td>{{ item.createdAt|date('d/m/Y') }} </td>
+                    <td>
+                        {% if item.stock == 1 %}
+                            <span class="badge bg-success">Dispo</span>
+                        {% else %}
+                            <span class="badge bg-danger">Non dispo</span>
+                        {% endif %}  
+                    </td>
+                    <td>{{ item.price }}€</td>
+                     <td class="text-center"><a href="{{ path('admin_modification_produit', {'id' : item.id}) }}"><i class='bx bx-pencil' ></a></td>
+                    <td class="text-center"><a href="{{ path('admin_delete_product', {'id' : item.id}) }}"><i class='bx bx-trash' ></a></td> 
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

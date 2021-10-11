@@ -27,17 +27,6 @@ class CartService {
 
         }
         $this->session->set("panier", $panier);
-
-
-    }
-
-    public function remove( $id) {
-
-        $panier = $this->session->get("panier", []);
-        if(!empty($panier[$id])){
-            unset($panier[$id]);
-        }
-       return $this->session->set("panier", $panier);
     }
 
 
@@ -58,6 +47,17 @@ class CartService {
         return $this->session->set('panier', $panier);#tu me reset le nouveau cart apres la suppression ou/et retrait d'un produit
     }
 
+    public function remove( $id) {
+
+        $panier = $this->session->get("panier", []);
+        if(!empty($panier[$id])){
+            unset($panier[$id]);
+        }
+       return $this->session->set("panier", $panier);
+    }
+
+
+    
 
      public function getFullCart()  : array {
         $panier = $this->session->get('panier', []);
@@ -66,7 +66,9 @@ class CartService {
             $panierWithData[] = [
                 'product' => $this->productRepository->find($id),
                 'quantity' => $quantity,
+
             ];
+         
         }
         return $panierWithData;
      }

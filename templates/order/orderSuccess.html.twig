@@ -9,10 +9,13 @@
                 Nous vous remercions de votre commande <strong> {{ order.reference }}</strong></br>
                 Une confirmation vient de vous être envoyée à l'adresse <strong>{{ order.user.email }}</strong>
             <hr>
-            Votre commande vous sera livrée à l'adresse suivante : </br>
-            <span>{{ order.user.adress}} {{ order.user.zipcode}} {{ order.user.city}}</span></br>
+            Votre commande sera prête dans 30 minutes </br>
+            <span>Veuillez récuperer votre commande au restaurant LE PETIT VIETNAMIEN</br>
+                    50 Av. Anatole France</br>
+                    93600 Aulnay-sous-Bois, France</span></br>
             </p>
+            <p>Pour toute information merci de nous appeler au 01 41 70 21 89</p>
             <hr>
-            Pour suivre votre commande, rendez-vous dans votre  <a href="{{ path('users') }}">compte</a>
+            Pour voir votre commande, rendez-vous dans votre  <a href="{{ path('users') }}">compte</a>
     </div>
 {% endblock %}
