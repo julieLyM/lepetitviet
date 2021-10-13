@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <h1>Page accès interdit</h1>
+
+    <p>
+        Vous n'avez pas la permission de voir cette page
+        <a href="{{ path('index') }}">retourner à la page d'accueil</a>.
+    </p>
+    <p>Code de l'erreur : {{ status_code }} {{ status_text }} </p>
+
+</div>
+{% endblock %}

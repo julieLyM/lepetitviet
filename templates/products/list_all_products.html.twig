@@ -58,7 +58,7 @@
                         {% endif %}  
                     </td>
                     <td>{{ item.price }}€</td>
-                     <td class="text-center"><a href="{{ path('admin_modification_produit', {'id' : item.id}) }}"><i class='bx bx-pencil' ></a></td>
+                    <td class="text-center"><a href="{{ path('admin_modification_produit', {'id' : item.id}) }}"><i class='bx bx-pencil' ></a></td>
                     <td class="text-center"><a href="{{ path('admin_delete_product', {'id' : item.id}) }}"><i class='bx bx-trash' ></a></td> 
                 </tr>
             {% endfor %}

@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Product;
+use App\Entity\Order;
+
 use App\Form\EditUserType;
 use App\Form\ProductType;
 use App\Repository\OrderRepository;
@@ -18,7 +20,6 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
- * @IsGranted("ROLE_MANAGER")
  * @Route("/admin",name="admin_")
  *
  */
@@ -103,8 +104,6 @@ class AdminController extends AbstractController
             'orders' => $orders->findAll()
         ]);
     }
-
-
 
 
     //----------------------------------------------GESTION PRODUITS----------------------------------------------

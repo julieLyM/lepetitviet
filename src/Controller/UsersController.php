@@ -6,28 +6,32 @@ use App\Entity\User;
 use App\Entity\Order;
 use App\Form\EditUserType;
 use App\Repository\OrderRepository;
-use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
+
+/**
+ * @Route("/user",name="user_")
+ */     
 class UsersController extends AbstractController
 {
     /**
-     * @Route("/users",name="users")
+     * @Route("/",name="index")
      *
      */    public function index(): Response
     {
-        return $this->render('users/index.html.twig', [
+        return $this->render('user/index.html.twig', [
             'controller_name' => 'UsersController',
         ]);
     }
 
     /**
      * 
-     * @Route("/user/edit/{id}", name="edit_profil", methods={"GET|POST"})
+     * @Route("/edit/{id}", name="edit_profil", methods={"GET|POST"})
      */
     public function editUser(User $user, Request $request) {
         $form = $this->createForm(EditUserType::class, $user);
@@ -40,16 +44,57 @@ class UsersController extends AbstractController
 
             $this->addFlash('message','utilisateur modifié avec succès');
             
-            return $this->redirectToRoute('users');
+            return $this->redirectToRoute('user');
         }
 
-        return $this->render('users/edit_profil.html.twig' , [
+        return $this->render('user/edit_profil.html.twig' , [
             'userForm' => $form->createView()
         ]);
     }
 
+
+   /**
+     * @Route("/data/download",name="data_download")
+     *
+     */    public function userDataDownload(): Response
+     {
+         //definir les options pdf
+         $pdfOptions = new Options();
+         //police par defaut
+         $pdfOptions->set('defaultfont', 'Arial');
+         $pdfOptions->setIsRemoteEnabled(true);
+
+         //instancie dompdf
+         $dompdf = new Dompdf($pdfOptions);
+         $context = stream_context_create([
+             'ssl' => [
+                 'verify_peer' => FALSE,
+                 'verify_peer_name' => FALSE,
+                 'allow_self_signed' => TRUE
+             ]
+         ]);
+         $dompdf->setHttpContext($context);
+
+         //generer html
+         $html = $this->renderView('user/download.html.twig');
+
+         $dompdf->loadHtml($html);
+         $dompdf->setPaper('A4', 'portrait');
+         $dompdf->render();
+
+         //generer un nom de fichier
+         $fichier = 'user-data-'. $this->getUser()->getId() . '.pdf';
+
+         //envoyer le pdf au navigateur
+         $dompdf->stream($fichier, [
+             'Attachment' => true
+         ]);
+
+        return new Response();
+    }
+
     /**
-     * @Route("/user/order/{id}",name="user_order", methods={"GET|POST"})
+     * @Route("/order/{id}",name="order", methods={"GET|POST"})
      *
      */    public function userOrder(OrderRepository $orders, $id): Response
      {
@@ -57,7 +102,7 @@ class UsersController extends AbstractController
          ->getRepository(Order::class)
          ->findBy(array('id' => $id));
         //  dd($orders);
-        return $this->render('users/order-user.html.twig', [
+        return $this->render('user/order-user.html.twig', [
             'orders' => $orders]);
     }
 

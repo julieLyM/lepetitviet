@@ -16,19 +16,66 @@ class CartService {
 
     }
 
+    public function add($id)
+    {
+    $panier = $this->session->get('panier', []);#si je n'ai pas encore un panier dans la session , prenons un panier un tableau vide = > un tableau associatif
 
-    public function add( $id) {
-       // $session = $request->getSession();
-        $panier = $this->session->get("panier", []);
-        if(!empty($panier[$id])){
-            $panier[$id]++;
-        }else{
-            $panier[$id] = 1;
+    #on rajoute les produits dans le panier
+    if(!empty($panier[$id])){
 
-        }
-        $this->session->set("panier", $panier);
+        $panier[$id]++;#si on rajoute le même produit il se rajout au produit que l'on avait dans le panier
+    }else{
+        $panier[$id] = 1;
     }
 
+    #Remettre le panier dans la session pour le sauvegarder
+    $this->session->set('panier', $panier);
+    }
+
+    public function delete($id)
+    {
+    $panier= $this->session->get('panier', []);
+
+    if(!empty($panier[$id])){#s'il existe
+
+        unset($panier[$id]);
+
+    }
+
+    $this->session->set('panier', $panier);
+}
+
+    public function remove()
+    {
+        return $this->session->remove('panier');
+    }
+
+    public function get()
+    {
+        return $this->session->get('cart');
+    }
+    
+    public function getFullCart(){
+
+    $panier = $this->session->get('panier', []);
+
+    #enrichir les informations
+
+    $panierWithData = [];
+
+
+
+    foreach($panier as $id => $quantity){#a chaque fois qu'il boucle il rajoute une nouvelle entrée
+
+                $panierWithData[] = [
+                    'product'=> $this->productRepository->find($id),
+                    'quantity'=>$quantity
+                ];
+
+            
+        }
+        return $panierWithData;
+    }
 
     public function decrease($id)
     {
@@ -47,40 +94,20 @@ class CartService {
         return $this->session->set('panier', $panier);#tu me reset le nouveau cart apres la suppression ou/et retrait d'un produit
     }
 
-    public function remove( $id) {
 
-        $panier = $this->session->get("panier", []);
-        if(!empty($panier[$id])){
-            unset($panier[$id]);
+
+    public function getTotal()
+
+        {
+            $total = 0; #déclaration d'une variable pour calculer une variable
+
+            foreach ($this->getFullCart() as $item){
+                $total += $item['product']->getPrice() * $item['quantity'];
+
         }
-       return $this->session->set("panier", $panier);
-    }
-
-
-    
-
-     public function getFullCart()  : array {
-        $panier = $this->session->get('panier', []);
-        $panierWithData = [];
-        foreach($panier as $id => $quantity) {
-            $panierWithData[] = [
-                'product' => $this->productRepository->find($id),
-                'quantity' => $quantity,
-
-            ];
-         
+            return $total;
         }
-        return $panierWithData;
-     }
-   
-      public function getTotal()  : float {
-        $total = 0;
-        $panierWithData = $this->getFullCart();
-        foreach($panierWithData as $item){
-            $totalItem = $item['product']->getPrice() * $item['quantity'];
-            $total += $totalItem;
-        }
-        return $total;
-      }
+
+
 
 }

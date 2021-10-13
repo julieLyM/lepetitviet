@@ -92,7 +92,7 @@ class OrderController extends AbstractController
         
         #Afficher les information à l'utilisateur
         return $this->render('order/orderSuccess.html.twig', [
-            'order'=>$order
+            'order' => $order
         ]);
     }
 
@@ -112,7 +112,7 @@ class OrderController extends AbstractController
 
         #envoi email à l'utilisateur =>paiement n'est pas passé
         return $this->render('order/orderCancel.html.twig',[
-            'order'=>$order
+            'order' => $order
         ]);
     }
 

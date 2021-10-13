@@ -1,0 +1,57 @@
+{% extends "base-pdf.html.twig" %}
+{% block title %}Liste des données de {{app.user.firstname}} {{app.user.lastname}}{% endblock %}
+{% block body %}
+<h1>Liste des données de {{app.user.firstname}} {{app.user.lastname}}</h1>
+<h2>Vos données</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prenom</th>
+            <th scope="col">Email</th>
+            <th scope="col">Téléphone</th>
+            <th scope="col">Adresse</th>
+            <th scope="col">Code Postal</th>
+            <th scope="col">Ville</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{app.user.lastname}}</td>
+            <td>{{app.user.firstname}}</td>
+            <td>{{app.user.email}}</td>
+            <td>{{app.user.phone}}</td>
+            <td>{{app.user.adress}}</td>
+            <td>{{app.user.zipcode}}</td>
+            <td>{{app.user.city}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Vos commandes</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th scope="col">Reference</th>
+            <th scope="col">Statut*</th>
+            <th scope="col">Date</th>
+            <th scope="col">Paiement</th>
+
+        </tr>
+    </thead>
+    <tbody>
+    {% for order in app.user.orders %}
+    
+        <tr>
+            <td>{{order.reference}}</td>
+            <td>{{order.status}}</td>
+            <td>{{order.createdAt|date('d/m/Y')}}</td>
+            <td>{{order.amount}}</td>
+
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<p>statut * 1 = payé ; 0 = non payé</p>
+{% endblock %}

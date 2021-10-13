@@ -41,6 +41,28 @@ class CartController extends AbstractController
 
       
     /**
+     * @Route("/remove/{id}", name="remove", methods={"GET|POST"})
+     */
+    public function remove($id, CartService $cartServices)
+    {
+        $cartServices->remove($id);
+        
+        return  $this->redirectToRoute('cart_index');
+
+    }
+    /** 
+     * @Route("/delete/{id}", name="delete", methods={"GET|POST"})
+     *
+     */
+    public function delete($id, CartService $cartServices)
+    {
+        $cartServices->delete($id);
+
+        return $this->redirectToRoute('cart_index');
+    }
+
+
+    /**
      * @Route("/decrease/{id}", name="decrease", methods={"GET|POST"})
      */
     public function decrease(CartService $cartService, $id)
@@ -49,18 +71,6 @@ class CartController extends AbstractController
 
         return $this->redirectToRoute('cart_index');
     }
-
-
-    /**
-     * @Route("/remove/{id}",name="remove")
-     */      
-    public function remove( CartService $cartService,  $id)
-    {
-        $cartService->remove($id);
-
-        return $this->redirectToRoute('cart_index');
-    }
-
 
     /**
      * @Route("/remove",name="remove_all")
@@ -71,6 +81,5 @@ class CartController extends AbstractController
         
        return $this->redirectToRoute('cart_index');
     }
-    
 
 }

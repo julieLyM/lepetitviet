@@ -6,9 +6,9 @@
     <div class="row">
         <div class="col-md-9 justify-content-center mx-auto">
 
-            <h3 class="title-PageProduct">Nos produits</h3>
+            <h3>Nos produits</h3>
 
-            <div class="row product-container">
+            <div class="row">
                 <a href="{{ path('products_index') }}"> <i class='bx bxs-arrow-to-left'></i> Retour</a>
 
                 {% for product in category.products %}
@@ -22,20 +22,32 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <h6 class="card-title">Nom du produit : {{ product.name }}</h6> 
-                                <span class="d-block"><span class="d-block title-PageProduct">Prix : {{ product.price }} € </span></span>
-                                <span class="d-block"><span class="d-block title-PageProduct">
+                            <div class="row">
+                            <div class="col-md-6">
+                                <h6 class="card-title"><span class=" text-dark">{{ product.name }}</span></h6> 
+                                <small>{{ product.description }}  </small>
+
+                                <span class="d-block text-dark">Prix : {{ product.price }} € 
+                                </span>
+                                <span class="d-block"><span class="d-block ">
                                     {% if  product.stock  == 1  %}
                                     <small class="text-success">Produit disponible</small>
                                     {% else %}
                                     <small class="text-danger">Produit non disponible</small>
                                     {% endif %}
-                                    </span></span>
+                                    </span>
+                                </span>
+                            </div> 
+                            <div class="col-md-6">
                                     {% if  product.stock  == 1  %}
-                                        <a href="{{ path("cart_add", {'id': product.id} ) }}"><button class="btn btn-warning">Ajouter</button></a>
+                                        <div class="m-3"><a href="{{ path("cart_add", {'id': product.id} ) }}"><button class="btn btn-warning">Ajouter</button></a>
+                                        </div>
                                     {% else %}
-                                        <button class="btn btn-warning text-decoration-line-through" disabled >Ajouter</button>
+                                        <div class="m-3"><button class="btn btn-warning text-decoration-line-through " disabled >Ajouter</button></div>
                                     {% endif %}
+                            </div>
+                            </div>
+             
                             </div>
                         </div>
                     </div>

@@ -3,14 +3,15 @@
 {% block title %}Confirmation de commande {% endblock %}
 
 {% block body %}
-    <div class="container w-75">
+    <div class="container w-75 bg-light m-2">
     <h3 class="mt-4">Confirmation commande</h3>
             <p>Bonjour {{ order.user.firstname }} {{ order.user.lastname }}</br>
                 Nous vous remercions de votre commande <strong> {{ order.reference }}</strong></br>
                 Une confirmation vient de vous être envoyée à l'adresse <strong>{{ order.user.email }}</strong>
             <hr>
-            Votre commande sera prête dans 30 minutes </br>
-            <span>Veuillez récuperer votre commande au restaurant LE PETIT VIETNAMIEN</br>
+            <p>Votre commande sera prête dans 30 minutes </p>
+            <span>Veuillez récuperer votre commande au restaurant :</br> 
+                    LE PETIT VIETNAMIEN</br>
                     50 Av. Anatole France</br>
                     93600 Aulnay-sous-Bois, France</span></br>
             </p>

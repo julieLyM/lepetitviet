@@ -3,7 +3,7 @@
 {% block title %}BIENVENUE DANS TON PROFIL!{% endblock %}
 
 {% block body %}
-<div class="container w-75 bg-light mt-3 ">
+<div class="container w-75 bg-light mt-3 mb-3 p-3">
     {% if is_granted('ROLE_ADMIN') %}
     <div class="text-left pt-3 pb-3">
         Vous êtes un administrateur <i class='bx bx-right-arrow-alt'></i> <a href="{{ path('admin_index', {id: app.user.id}) }}">acceder au back office </a><br>
@@ -22,18 +22,17 @@
 
 
 
-    <span><small class="font-weight-bold color-g">Nom et prénom : </small>{{ app.user.lastname}} {{ app.user.firstname}}</span></br>
-    <span><small class="font-weight-bold color-g">Date de naissance : </small>{{ app.user.birthday|date("d/m/Y")}}</span></br>
-    <span><small class="font-weight-bold color-g">Votre email : </small>{{ app.user.email}}</span></br>
-    <span><small class="font-weight-bold color-g">Votre telephone : </small>{{ app.user.phone}}</span> </br>
+    <span><small class="font-weight-bold color-g">Nom : </small>{{ app.user.lastname}}</span></br>
+    <span><small class="font-weight-bold color-g">Prénom : </small>{{ app.user.firstname}}</span></br>
     <span><small class="font-weight-bold color-g">Votre adresse : </small>{{ app.user.adress}} {{ app.user.zipcode}} {{ app.user.city}} </span></br>
-
+    <span><small class="font-weight-bold color-g">Votre telephone : </small>{{ app.user.phone}}</span> </br>
+    <span><small class="font-weight-bold color-g">Votre email : </small>{{ app.user.email}}</span></br>
     <hr>
 
     <div class="row">
         <div class=" col-md-6">
             <div class="account-item text-center">
-                <a href="{{ path('edit_profil', {id: app.user.id}) }}"> 
+                <a href="{{ path('user_edit_profil', {id: app.user.id}) }}"> 
                 <button class="btn btn-outline-dark">                
                     <i class='bx bx-face'></i>  Modifier mon profil
                 </button>
@@ -53,6 +52,23 @@
 
     </div>
     <hr>
+    <div class="row mb-3">
+        <div class=" col-md-6">
+            <p>Si vous souhaitez supprimer votre compte, merci de contacter le responsable du restaurant.</p>
+
+        </div>
+        <div class=" col-md-6">
+            <div class="account-item text-center">
+                <p>Vous pouvez télécharger vos données personnelles</p>
+
+              <a href="{{ path('user_data_download', {id: app.user.id}) }}"> 
+                <button class="btn btn-outline-dark">                
+                    <i class='bx bx-face'></i>  Voir mes données personnelles
+                </button>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
