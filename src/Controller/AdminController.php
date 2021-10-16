@@ -4,14 +4,11 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Product;
-use App\Entity\Order;
-
 use App\Form\EditUserType;
 use App\Form\ProductType;
 use App\Repository\OrderRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -41,7 +38,7 @@ class AdminController extends AbstractController
 
 
     /**
-     * @Route("/utilisateurs",name="utilisateurs")
+     * @Route("/utilisateurs",name="users")
      *
      */    public function usersList(UserRepository $users): Response
      {
@@ -53,7 +50,7 @@ class AdminController extends AbstractController
      /**
      * Modifier un utilisateur
      * 
-     * @Route("/utilisateur/modifier/{id}", name="utilisateur_modifier", methods={"GET|POST"})
+     * @Route("/utilisateur/modifier/{id}", name="user_modified", methods={"GET|POST"})
      */
     public function editUser(User $user, Request $request) {
         $form = $this->createForm(EditUserType::class, $user);
@@ -65,7 +62,7 @@ class AdminController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('message','utilisateur modifié avec succès');
-            return $this->redirectToRoute('admin_utilisateurs');
+            return $this->redirectToRoute('admin_users');
         }
 
         return $this->render('admin/edit_user.html.twig' , [
@@ -75,7 +72,7 @@ class AdminController extends AbstractController
 
 
     /** 
-     * @Route("/utilisateur/{id}", name="utilisateur_supp")
+     * @Route("/utilisateur/{id}", name="user_delete")
      * @param Request $request
      * @return Response
      *
@@ -88,7 +85,7 @@ class AdminController extends AbstractController
             $entityManager->flush();
             $this->addFlash('message','user supprimer');
 
-        return $this->redirectToRoute('admin_utilisateurs');
+        return $this->redirectToRoute('admin_users');
     }
 
 //----------------------------------------------GESTION COMMANDE----------------------------------------------

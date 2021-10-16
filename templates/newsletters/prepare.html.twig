@@ -5,11 +5,13 @@
 <div class="container">
     <div class="w-50 mx-auto mt-4">
     <h1 class="color-g m-3 text-center">Création d'une newsletter</h1>
-    <div><a href="{{ path('admin_index') }}"> <i class='bx bxs-arrow-to-left'></i> Retour</a></div>
+    <div><a href="{{ path('admin_index') }}" class="btn btn-gold mb-4"> <i class='bx bxs-arrow-to-left'></i> Retour</a></div>
 
         {{form_start(form)}}
        <h5> {{form_row(form.name)}}</h5>
+            {{form_row(form.categories)}}
         <h5>Le contenu à rediger</h5>
+
         <div class="mb-3" id="editor"></div>
         {{form_row(form.content)}}
         

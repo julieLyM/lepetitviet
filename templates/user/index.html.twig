@@ -31,8 +31,8 @@
 
     <div class="row">
         <div class=" col-md-6">
-            <div class="account-item text-center">
-                <a href="{{ path('user_edit_profil', {id: app.user.id}) }}"> 
+            <div class=" text-center">
+                <a href="{{ path('user_edit_profil', {'id': app.user.id}) }}"> 
                 <button class="btn btn-outline-dark">                
                     <i class='bx bx-face'></i>  Modifier mon profil
                 </button>
@@ -40,8 +40,8 @@
             </div>
         </div>
         <div class=" col-md-6">
-            <div class="account-item text-center">
-                <a href="{{ path('user_order', {id: app.user.id}) }}">
+            <div class=" text-center">
+                <a href="{{ path('user_order', {'id': app.user.id}) }}">
                     <button class="btn btn-outline-dark">
                         <i class='bx bx-basket'></i>  Mes commandes
                     </button>
@@ -58,10 +58,10 @@
 
         </div>
         <div class=" col-md-6">
-            <div class="account-item text-center">
+            <div class="text-center">
                 <p>Vous pouvez télécharger vos données personnelles</p>
 
-              <a href="{{ path('user_data_download', {id: app.user.id}) }}"> 
+              <a href="{{ path('user_data_download', {'id': app.user.id}) }}"> 
                 <button class="btn btn-outline-dark">                
                     <i class='bx bx-face'></i>  Voir mes données personnelles
                 </button>

@@ -9,68 +9,49 @@
                 </div>
       {% endfor %}
 <div class="container w-75 bg-light mt-3 ">
-  <div class=" pt-3 pb-3">
-    <h1 class="color-g">Bienvenue dans l'espace administration</h1>
-  </div>
-   {% if app.user %}
+    <div class=" pt-3 pb-3">
+        <h1 class="color-g">Bienvenue dans l'espace administration</h1>
+        {% if app.user %}
             <div >
-              Vous êtes connecté(e) en tant que {{ app.user.username }}
+            Vous êtes connecté(e) en tant que {{ app.user.username }}
             </div>
-    {% endif %}
-    
-    <hr>
-
-   <div class="row">
-        <div class=" col-md-4">
-            <div class="account-item">
-                <a href="{{ path('admin_orders') }}"><button class="btn btn-outline-dark"><i class='bx bx-shopping-bag'></i>  Liste des commandes</button></a>
+        {% endif %}
+        <hr>
+        <div class="row">
+            <div class=" col-md-4">
+                <div class="account-item">
+                    <a href="{{ path('admin_orders') }}"><i class='bx bx-shopping-bag'></i>  Liste des commandes</a>
+                </div>
+            </div>  
+            <div class=" col-md-4">
+                <div class="account-item">
+                    <a href="{{ path('admin_list_all_products') }}"><i class='bx bxs-component'></i> Gestion des produits</a>
+                </div>
             </div>
-        </div>  
-
-          <div class=" col-md-4">
-            <div class="account-item">
-               <a href="{{ path('admin_utilisateurs') }}">                  
-                <button class="btn btn-outline-dark">                
-                 <i class='bx bx-book-content'></i>   Liste de tout les utilisateurs
-                </button>
-                </a>
-            </div>
-        </div>      
-      </div>
-
-    <hr>
-
-    <div class="row">
-        <div class=" col-md-4">
-            <div class="account-item">
-                <a href="{{ path('newsletters_list') }}">
-                   <button class="btn btn-outline-dark"><i class='bx bx-envelope' ></i>  Liste des newsletters</button></a>
-            </div>
+            <div class=" col-md-4">
+                <div class="account-item">
+                <a href="{{ path('admin_users') }}">                  
+                    <i class='bx bx-face'></i>   Gestion  utilisateurs
+                    </a>
+                </div>
+            </div>      
         </div>
-        <div class=" col-md-4">
-            <div class="account-item">
-                <a href="{{ path('newsletters_prepare') }}"><button class="btn btn-outline-dark"> <i class='bx bx-pencil' ></i>  Rédiger une newsletter</button></a>
+        <hr>
+        <div class="row">
+            <div class=" col-md-4">
+                <div class="account-item">
+                    <a href="{{ path('newsletters_list') }}">
+                    <i class='bx bx-envelope' ></i>  Gestion des newsletters</a>
+                </div>
             </div>
-        </div>
+            <div class=" col-md-4">
+                <div class="account-item">
+                    <a href="{{ path('post_list') }}"><i class='bx bx-star' ></i>  Gestion des actualités</a>
+                </div>
+            </div>
+        </div>   
+        <hr>
     </div>
-       
-    <hr>
-    
-    <div class="row">
-        <div class=" col-md-4">
-            <div class="account-item">
-                <a href="{{ path('create_post') }}"><button class="btn btn-outline-dark"> <i class='bx bx-pencil' ></i>  Rédiger une actualité</button></a>
-            </div>
-        </div>
-        <div class=" col-md-4">
-            <div class="account-item">
-                <a href="{{ path('admin_list_all_products') }}"><button class="btn btn-outline-dark"> <i class='bx bx-pencil' ></i>Gestion des produits</button></a>
-            </div>
-        </div>
-    </div>
-    </div>
-    <hr>
-
 </div>
 
 {% endblock %}

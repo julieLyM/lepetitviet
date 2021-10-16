@@ -6,7 +6,8 @@
 <div class="container table-responsive">
 
         <h3 class="mt-4">Gestions des commandes</h3>
-        <div><a href="{{ path('admin_index') }}"> <i class='bx bxs-arrow-to-left'></i> Retour</a></div>
+        <div><a href="{{ path('admin_index') }}" class="btn btn-gold mb-4"> <i class='bx bxs-arrow-to-left'></i> Retour</a></div>
+
 
         {% for label, messages in app.flashes %}
             {% for message in messages %}

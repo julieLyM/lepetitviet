@@ -9,7 +9,7 @@
             <div class="row">
                 <h2>liste des users :</h2>
 
-                <div><a href="{{ path('admin_index') }}"> <i class='bx bxs-arrow-to-left'></i> Retour</a></div>
+                <div><a href="{{ path('admin_index') }}" class="btn btn-gold mb-4"> <i class='bx bxs-arrow-to-left'></i> Retour</a></div>
 
                 <table class="table" style="text-align:center;">
                     <thead>
@@ -19,8 +19,10 @@
                         <th scope="col">Prénom</th>
                         <th scope="col">Email</th>
                         <th scope="col">Rôles</th>
-                        <th scope="col">Modifier</th>
-                        <th scope="col">Supprimer</th>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <th scope="col">Modifier</th>
+                            <th scope="col">Supprimer</th>
+                        {% endif %}  
 
 
 
@@ -44,16 +46,19 @@
                                 {% endif %}
                             {% endfor %} 
                             </td>
+                            {% if is_granted('ROLE_ADMIN') %}
                             <td>
-                                <a class="btn" href="{{ path('admin_utilisateur_modifier', { 'id' : user.id }) }}">
+                                <a class="btn" href="{{ path('admin_user_modified', { 'id' : user.id }) }}">
                                     <i class='bx bx-pencil'></i>
                                 </a>
                             </td> 
                             <td>
-                                <a href="{{ path('admin_utilisateur_supp', {'id': user.id}) }}">
+                                <a href="{{ path('admin_user_delete', {'id': user.id}) }}">
                                     <i class='bx bx-trash' ></i>                               
                                 </a>
                             </td>
+                            {% endif %}  
+
                         </tr>
                     {% else %}
                         <tr>                

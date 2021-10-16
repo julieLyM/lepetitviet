@@ -34,7 +34,7 @@
     <thead>
         <tr>
             <th scope="col">Reference</th>
-            <th scope="col">Statut*</th>
+            <th scope="col">Statut</th>
             <th scope="col">Date</th>
             <th scope="col">Paiement</th>
 
@@ -45,7 +45,11 @@
     
         <tr>
             <td>{{order.reference}}</td>
-            <td>{{order.status}}</td>
+            {% if order.status == 1 %}
+                <td style="color:green;">payé</td>
+            {% else %}
+                <td style="color:red;">non payé</td>
+            {% endif %}
             <td>{{order.createdAt|date('d/m/Y')}}</td>
             <td>{{order.amount}}</td>
 
@@ -53,5 +57,4 @@
     {% endfor %}
     </tbody>
 </table>
-<p>statut * 1 = payé ; 0 = non payé</p>
 {% endblock %}

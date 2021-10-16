@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Newsletters\NewsLetters;
-
 use App\Entity\Newsletters\Users;
 use App\Form\NewslettersType;
 use App\Form\NewslettersUsersType;
@@ -166,4 +165,45 @@ public function prepare(Request $request): Response
 
         return $this->redirectToRoute('index');
     }
+
+    /**
+     * Modifier une newsletter
+     * 
+     * @Route("/modified/{id}", name="modified", methods={"GET|POST"})
+     */
+    public function editNews(Newsletters $newsletter, Request $request) {
+        $form = $this->createForm(NewslettersType::class, $newsletter);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($newsletter);
+            $entityManager->flush();
+
+            $this->addFlash('message','utilisateur modifié avec succès');
+            return $this->redirectToRoute('newsletters_list');
+        }
+
+        return $this->render('newsletters/prepare.html.twig' , [
+            'form' => $form->createView()
+        ]);
+    }
+
+
+    /**
+     * @Route("/delete/{id}", name="delete")
+     */
+    public function remove(Newsletters $newsletter)
+    {
+        // recuperation de l'entity manager
+        $items = $this->getDoctrine()->getManager();
+        $items->remove($newsletter);
+        $items->flush();
+
+        $this->addFlash('message', 'newsletter supprimée');
+
+        return $this->redirectToRoute('newsletters_list');
+
+    }
+
 }

@@ -9,7 +9,7 @@
             <h3>Nos produits</h3>
 
             <div class="row">
-                <a href="{{ path('products_index') }}"> <i class='bx bxs-arrow-to-left'></i> Retour</a>
+                <div><a href="{{ path('products_index') }}" class="btn btn-gold"> <i class='bx bxs-arrow-to-left'></i> Retour</a></div>
 
                 {% for product in category.products %}
                     <div class="col-md-4 mt-4" >
@@ -17,16 +17,34 @@
                             <div class="position-relative">
                                 <a href="">
                                     <img src="/uploads/images/{{ product.image }}" alt="{{ product.name }}" width="100%" style="height:250px;" class="img-fluid img-thumbnai card-img-tol"></a>
-                                <div class="card-img-overlay d-flex justify-content-end align-items-end">
-                                    <button type="button" class="btn btn-light rounded-circle" data-toggle="button" aria-pressed="false" autocomplete="off"><i class="far fa-heart"></i></button>
-                                </div>
+                 
                             </div>
                             <div class="card-body">
                             <div class="row">
                             <div class="col-md-6">
                                 <h6 class="card-title"><span class=" text-dark">{{ product.name }}</span></h6> 
-                                <small>{{ product.description }}  </small>
+                                <!-- Button trigger modal -->
+                                <a type="button" class="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                    Description
+                                </a>
 
+                                <!-- Modal -->
+                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title color-g" id="staticBackdropLabel">Plus d'informations</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                                                <small>{{ product.description }}  </small>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-gold" data-bs-dismiss="modal">Fermer</button>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
                                 <span class="d-block text-dark">Prix : {{ product.price }} € 
                                 </span>
                                 <span class="d-block"><span class="d-block ">

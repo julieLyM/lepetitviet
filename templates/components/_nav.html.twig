@@ -75,9 +75,7 @@
             <a class="btn btn-gold m-3" href="{{ path('app_register') }}">Inscription</a>
           {% endif %}
 
-   
-   
-          {% if is_granted('ROLE_ADMIN') %}
+          {% if is_granted('ROLE_MANAGER') %}
             <li class="nav-item">
               <a class="btn btn-info btn-admin" aria-current="page" href="{{ path('admin_index') }}">Administration</a>
             </li>

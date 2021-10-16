@@ -7,9 +7,9 @@
 
         <h3 class="mt-4">Gestion des produits </h3>
 
-        <div><a href="{{ path('admin_index') }}"> <i class='bx bxs-arrow-to-left'></i> Retour</a></div>
-
-        <div class="text-center m-4 "><a class="badge bg-secondary" href="{{ path('admin_create_product') }}"><h3>Créer un nouveau produit</h3></a></div>
+        <div><a href="{{ path('admin_index') }}" class="btn btn-gold"> <i class='bx bxs-arrow-to-left'></i> Retour</a></div>
+    
+        <div class="text-center m-4 "><a class="btn btn-gold" href="{{ path('admin_create_product') }}"><h4>Créer un nouveau produit</h4></a></div>
 
         {% for label, messages in app.flashes %}
             {% for message in messages %}
@@ -38,16 +38,12 @@
             <tbody>
             {% for item in items %}
                 <tr>
-                    <td class="badge badge-light">{{ item.id }}
+                    <td class="text-primary">{{ item.id }}
                     <td>
                     <td>{{ item.name }}<br>
                     <td>
-                    {# <td>{{ item.category }} </td> #}
                     <td><img src="/uploads/images/{{ item.image }}" alt="{{ item.name }}" height="75px"></td>
                     <td>{{ item.description }}
-
-                        {# .substr({{item.description}}, 0, 30 )."...<a href='#'>Lire la suite</a> #}
-
                     </td>
                     <td>{{ item.createdAt|date('d/m/Y') }} </td>
                     <td>

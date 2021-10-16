@@ -73,7 +73,7 @@ class Product
     private $updatedAt;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      * @Assert\NotBlank(message="Vous avez oublié une description!")
      * @Assert\Length(max=255, maxMessage="Attention, votre description ne doit pas depasser {{ limit }} caractères.")     
      */

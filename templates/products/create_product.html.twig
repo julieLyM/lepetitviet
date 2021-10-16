@@ -4,10 +4,10 @@
 
 {% block body %}
 
-    <h3 class="text-center mt-4">Enregistrement d'un nouveau Produit</h3>
+    <h3 class="text-center color-g m-5">Enregistrement / modification d'un nouveau Produit</h3>
 
     <div class="container w-50">
-        <a href="{{ path('admin_list_all_products') }}"> <i class='bx bxs-arrow-to-left'></i> Retour</a>
+        <div><a href="{{ path('admin_list_all_products') }}" class="btn btn-gold mb-3"> <i class='bx bxs-arrow-to-left'></i> Retour</a></div>
         {% for label, messages in app.flashes %}
             {% for message in messages %}
                 <div class="alert-{{ label }}">

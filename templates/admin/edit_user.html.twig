@@ -1,19 +1,60 @@
-{% extends "base.html.twig" %}
 
-{% block title %}modifier l'utilisateur{% endblock %}
+{% extends 'base.html.twig' %}
+
+{% block title %}MODIFICATION DU PROFIL!{% endblock %}
 
 {% block body %}
-    <div class="col-md m-5 d-flex justify-content-center">                  
-        <div class="card text-center" style="width: 30rem;">
-        <h1>modifier l'utilisateur</h1>
-            <div><a href="{{ path('admin_index') }}"> <i class='bx bxs-arrow-to-left'></i> Retour</a></div>
 
-            <div class="card-body">
-            
-                {{ form(userForm) }}
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right color-g">Bienvenue dans l'espace modification du profil {{ app.user.username }}</h4>
+                </div>
+                {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {{ form_start(userForm,{'attr': {'novalidate': 'novalidate'}}) }}
+
+                <div class="row mt-2">
+                    <div class="col-md-6">                       
+                    {{ form_row(userForm.lastname) }}
+                    </div>
+                    <div class="col-md-6">                 
+                    {{ form_row(userForm.firstname) }}
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                    
+                        {{ form_row(userForm.adress) }}
+                        {{ form_row(userForm.zipcode) }}
+                        {{ form_row(userForm.city) }}
+                        {{ form_row(userForm.phone) }}
+                        {{ form_row(userForm.email) }}
+                        {{ form_row(userForm.password) }}
+                        {{ form_row(userForm.roles) }}
+
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-gold" type="submit">
+                            Modifier votre profil
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Modifier votre profil</button></div>
-        </div>  
-    </div>
+        </div>
 
+        {{ form_end(userForm) }}
+
+    </div>
+</div>
+</div>
+</div>
 {% endblock %}
+

@@ -18,8 +18,6 @@ class EditUserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-
-    
         ->add('email', EmailType::class, [
             'constraints' => [
                 new NotBlank([
@@ -36,7 +34,7 @@ class EditUserType extends AbstractType
         ->add('roles', ChoiceType::class,[
             'choices' => [
                 'Utilisateur' => 'ROLE_USER',
-                'Editor' => 'ROLE_EDITOR',
+                'manager' => 'ROLE_MANAGER',
                 'Admin' => 'ROLE_ADMIN'
             ],
             'expanded' => true,
@@ -50,7 +48,8 @@ class EditUserType extends AbstractType
                 'min'=>2,
                 'max'=>30
             ]),
-        ])        ->add('firstname',TextType::class,[
+        ])
+        ->add('firstname',TextType::class,[
             'label'=> 'Votre prenom',
             'required'=>true,
             'constraints'=>

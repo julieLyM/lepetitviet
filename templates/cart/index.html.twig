@@ -42,7 +42,7 @@
                         <i class='bx bx-plus-circle'></i>
                     </a>
                 </td>
-            <td>{{item.product.price * item.quantity}}</td>
+            <td>{{item.product.price * item.quantity}}€</td>
             <td>
                 <a href="{{path('cart_remove', {'id': item.product.id})}}">
                    <i class='bx bxs-trash'></i>
@@ -57,7 +57,7 @@
             <td class="text-end text-danger" ><p class="text-sm-end">Après validation de votre achat, veuillez récuperer votre commande avant </br>la fermeture du restaurant soit : à 14h30 ou à 21h30</p></td>
 
             <td class="text-end text-primary" >Total : </td>
-            <td class="text-primary">{{ total }}€</td>
+            <td class="text-primary">{{ total }} €</td>
 
             <h4>
                 {% if app.user %}

@@ -1,0 +1,164 @@
+{% extends "base-pdf.html.twig" %}
+{% block title %}FACTURE {{app.user.firstname}} {{app.user.lastname}}{% endblock %}
+{% block body %}
+<h1>FACTURE  RESTAURANT LE PETIT VIETNAMIEN</h1>
+<p>{{app.user.firstname}} {{app.user.lastname}}</p> 
+<p>{{app.user.adress}} {{app.user.zipcode}} {{app.user.city}}</p> 
+<p>Tél: {{app.user.phone}}</p> 
+
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Numéro Facture</th>
+            <th scope="col">Reference</th>
+            <th scope="col">Statut*</th>
+            <th scope="col">Date</th>
+            <th scope="col">Total commande</th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+     {% for order in app.user.orders %}
+        <tr>
+            {% if loop.first %}
+                <td>{{loop.index}}</td>
+
+                <td>{{order.reference}}</td>
+                {% if order.status == 1 %}
+                    <td>payé</td>
+                {% else %}
+                    <td>non payé</td>
+                {% endif %}
+                    <td>{{order.createdAt|date('d/m/Y')}}</td>
+                    <td>{{order.amount}}€</td>    
+            {% endif %}
+            <td style="visibility:hidden;"></td>
+       </tr>
+    {% endfor %} 
+
+    </tbody>
+</table>
+
+
+{% endblock %}
+
+{# {% extends "base-pdf.html.twig" %}
+{% block title %}FACTURE {{app.user.firstname}} {{app.user.lastname}}{% endblock %}
+{% block body %}
+<h1>FACTURE  RESTAURANT LE PETIT VIETNAMIEN</h1>
+<p>{{app.user.firstname}} {{app.user.lastname}}</p> 
+<p>{{app.user.adress}} {{app.user.zipcode}} {{app.user.city}}</p> 
+<p>Tél: {{app.user.phone}}</p> 
+
+   <table class="content">
+        <thead>
+            <tr class="ligne1Content">
+                <td class="text-left couleurgris taille1">
+                    <b>DESIGNATION</b>
+                </td>
+                <td class="text-center couleurmoinsgris taille2">
+                    <b>QUANTITE</b>
+                </td>
+                <td class="text-center couleurgris taille3">
+                    <b>PRIX HT</b>
+                </td>
+                <td class="text-center couleurgris taille5">
+                    <b>TAXE</b>
+                </td>
+                <td class="text-center couleurverte taille4 colorwhite">
+                    <b>TOTAL HT</b>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="couleurgris">
+                <td class="text-left couleurgris taille1">
+                    facture.designation1 
+                </td>
+                <td class="text-center couleurmoinsgris taille2">
+                   facture.quantite1 
+                </td>
+                <td class="text-center taille3">
+                { facture.prixht1 
+                </td>
+                <td class="text-center taille5">
+                     facture.taxe1 
+                </td>
+                <td class="text-center couleurverte taille4 colorwhite">
+                      facture.quantite1  *  facture.prixht1 
+                </td>
+            </tr>
+
+<tr class="couleurgris">
+                <td class="text-left couleurgris taille1">
+                     facture.designation2 
+                </td>
+                <td class="text-center couleurmoinsgris taille2">
+                facture.quantite2 
+                </td>
+                <td class="text-center taille3">
+                    facture.prixht2 
+                </td>
+                <td class="text-center taille5">
+                    facture.taxe2 
+                </td>
+                <td class="text-center couleurverte taille4 colorwhite">
+                      facture.quantite2  *  facture.prixht2 
+                </td>
+            </tr>
+<tr class="couleurgris">
+                <td class="text-left couleurgris taille1">
+                     facture.designation3 
+                </td>
+                <td class="text-center couleurmoinsgris taille2">
+                     facture.quantite3 
+                </td>
+                <td class="text-center taille3">
+                     facture.prixht3 
+                </td>
+                <td class="text-center taille5">
+                     facture.taxe3 
+                </td>
+                <td class="text-center couleurverte taille4 colorwhite">
+                      facture.quantite3  *  facture.prixht3 
+                </td>
+            </tr>
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4" class="text-right tht">
+                    TOTAL HT
+                </td>
+                <td class="tht text-center">
+                     facture.quantite1 * facture.prixht1  +  facture.quantite2  *  facture.prixht2  +  facture.quantite3  *  facture.prixht3 
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" class="text-right tht">
+                    TAXE à  facture.taxe1 
+                </td>
+                <td class="text-center">
+                    facture.taxe2 
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" class="text-right">
+                    <h3>TOTAL TTC À PAYER</h3>
+                </td>
+                <td class="text-center">
+                    <h3> €</h3>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <span>CONDITIONS ET MOYENS DE PAIEMENT:</span>
+                    <br/>
+                    facture.conditions 
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock %} #}

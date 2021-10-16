@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Newsletters\Categories;
 use App\Entity\Newsletters\NewsLetters;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -16,14 +18,14 @@ class NewslettersType extends AbstractType
         $builder
             ->add('name', TextType::class,            
             [
-                'label'=> 'Auteur',
+                'label'=> 'Ecrit par :',
        
             ])
+            ->add('categories', EntityType::class, [
+                'class' => Categories::class,
+                'choice_label' => 'name'
+             ])
             ->add('content', HiddenType::class)
-            //  ->add('categories', EntityType::class, [
-            //      'class' => Categories::class,
-            //      'choice_label' => 'name'
-            //  ])
         ;
     }
 

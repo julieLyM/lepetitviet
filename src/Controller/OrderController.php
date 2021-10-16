@@ -71,7 +71,7 @@ class OrderController extends AbstractController
         #si la commande n'existe pas et si l'utilisateur n'est pas celui qui a passé la commande=>redirection(sécurité)
         if(!$order || $order->getUser() != $this->getUser()){
 
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('cart_index');
         }
         #Si le statut de la commande est 0 => n'est pas encore payée
         if($order->getStatus() == 0){

@@ -2,10 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
 use App\Entity\Post;
+use App\Entity\Product;
+use App\Entity\Category;
 use App\Form\PostType;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,15 +26,23 @@ class DefaultController extends AbstractController
         $posts = $this->getDoctrine()
             ->getRepository(Post::class)
             ->findall();
-
+        $products = $this->getDoctrine()
+        ->getRepository(Product::class)
+        ->findall();
+        $categories = $this->getDoctrine()
+        ->getRepository(Category::class)
+        ->findAll();
 
         return $this->render('default/index.html.twig', [
-            'posts'=>$posts
+            'posts'=> $posts,
+            'products' => $products,
+            'categories' => $categories
         ]);
     }
 
     /**
-     * @Route("/create_post",name="create_post", methods={"GET|POST"})
+     * @IsGranted("ROLE_MANAGER")
+     * @Route("/create_post",name="post_create", methods={"GET|POST"})
      *
      */   
     public function create(Request $request): Response
@@ -55,7 +64,7 @@ class DefaultController extends AbstractController
 
             $this->addFlash('success',"Votre post a été créer ");
 
-            return $this->redirectToRoute('create_post');
+            return $this->redirectToRoute('post_list');
         }
 
         #passer le formulaire à la vue
@@ -63,6 +72,63 @@ class DefaultController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    
+
+    /**
+     * @IsGranted("ROLE_MANAGER")
+     * @Route("/list_post", name="post_list")
+     */
+    public function list(PostType $posts): Response
+    {     $posts = $this->getDoctrine()
+        ->getRepository(Post::class)
+        ->findall();
+        return $this->render('post/list_posts.html.twig', [
+            'posts' => $posts
+        ]);
+    }
+
+    /**
+     * Modifier une actualité
+     * @IsGranted("ROLE_MANAGER")
+     * @Route("/modified_post/{id}", name="post_modified", methods={"GET|POST"})
+     */
+    public function editPost(Post $post, Request $request) {
+        $form = $this->createForm(PostType::class, $post);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($post);
+            $entityManager->flush();
+
+            $this->addFlash('message','post modifié avec succès');
+            return $this->redirectToRoute('post_list');
+        }
+
+        return $this->render('post/create.html.twig' , [
+            'form' => $form->createView()
+        ]);
+    }
+
+
+    /**
+     * @IsGranted("ROLE_MANAGER")
+     * @Route("/delete/{id}", name="post_delete")
+     */
+    public function remove(Post $posts)
+    {
+        // recuperation de l'entity manager
+        $items = $this->getDoctrine()->getManager();
+        $items->remove($posts);
+        $items->flush();
+
+        $this->addFlash('message', 'post supprimée');
+
+        return $this->redirectToRoute('post_list');
+
+    }
+
+
 
     /**
      * @Route("/cgv", name="cgv", methods={"GET"})

@@ -103,7 +103,49 @@ class UsersController extends AbstractController
          ->findBy(array('id' => $id));
         //  dd($orders);
         return $this->render('user/order-user.html.twig', [
-            'orders' => $orders]);
+            'orders' => $orders
+        ]);
     }
+
+    /**
+     * @Route("/bill/download",name="bill_download")
+     *
+     */    
+    public function billDownload(): Response
+     {
+        //definir les options pdf
+        $pdfOptions = new Options();
+        //police par defaut
+        $pdfOptions->set('defaultfont', 'Arial');
+        $pdfOptions->setIsRemoteEnabled(true);
+
+        //instancie dompdf
+        $dompdf = new Dompdf($pdfOptions);
+        $context = stream_context_create([
+            'ssl' => [
+                'verify_peer' => FALSE,
+                'verify_peer_name' => FALSE,
+                'allow_self_signed' => TRUE
+            ]
+        ]);
+        $dompdf->setHttpContext($context);
+
+        //generer html
+        $html = $this->renderView('user/bill-dl.html.twig');
+
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+
+        //generer un nom de fichier
+        $fichier = 'user-bill-data-'. $this->getUser()->getId() . '.pdf';
+
+        //envoyer le pdf au navigateur
+        $dompdf->stream($fichier, [
+            'Attachment' => true
+        ]);
+
+       return new Response();
+   }
 
 }

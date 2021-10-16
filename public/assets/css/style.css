@@ -4,8 +4,9 @@
 --------------------------------------------------------------*/
 body {
   font-family: 'Montserrat', sans-serif;
-    background: rgb(241, 229, 229);
+  background: rgb(241, 229, 229);
   color: rgb(121, 117, 117);
+  height: 100%;
 }
 
 a {
@@ -32,6 +33,17 @@ h1, h2, h3, h4, h5, h6 {
 #editor{
   background-color: white;
   height:250px;
+}
+
+.account-item {
+  border: 2px solid goldenrod;
+  height: 100px;
+  width: 150px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  background-color:  #f1e5e5;
 }
 
 /*--------------------------------------------------------------
@@ -961,6 +973,10 @@ section {
   .mobile-nav-connex{
     margin-top: 10px;
   }
+  .why-us .box {
+    margin : 10px 0;
+  }
+
 
 }
 
@@ -1128,14 +1144,32 @@ section {
 --------------------------------------------------------------*/
 .gallery .gallery-item {
   overflow: hidden;
-  border-right: 3px solid #454035;
-  border-bottom: 3px solid #454035;
+  /* border-right: 3px solid #454035;
+  border-bottom: 3px solid #454035; */
 }
 .gallery .gallery-item img {
   transition: all ease-in-out 0.4s;
 }
 .gallery .gallery-item:hover img {
   transform: scale(1.1);
+}
+.galery-perso{
+  height: 296px;
+}
+
+@media (max-width: 992px) {
+  .galery-perso{
+    height: auto;
+  }
+
+  .galery-end {
+    display: none;
+  }
+
+  .category-pic {
+    margin: 10px 0;
+  }
+
 }
 
 /*--------------------------------------------------------------

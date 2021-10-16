@@ -8,12 +8,6 @@
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    {% if app.user %}
-    <div class="mb-3">
-        You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-    </div>
-    {% endif %}
-
     <div class="col-md m-5 d-flex justify-content-center">                  
         <div class="card text-center" style="width: 20rem;">
             <h1 class="h3 m-3 font-weight-normal">Page de connexion</h1>

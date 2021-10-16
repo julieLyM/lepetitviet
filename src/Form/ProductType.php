@@ -61,7 +61,7 @@ class ProductType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label'=>'Enregistrer / modifier le produit ',
                 'attr'=>[
-                    'class'=>'btn btn-block btn-outline-secondary'
+                    'class'=>'btn btn-block btn-gold'
                 ]
             ]);
     }
