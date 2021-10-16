@@ -1,6 +1,0 @@
-{% block body %}
-    <div class="container">
-        <h1>Merci pour votre inscription, à bientôt !</h1>
-
-    </div>
-{% endblock %}

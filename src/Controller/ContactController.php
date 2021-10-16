@@ -31,7 +31,6 @@ class ContactController extends AbstractController
                 ->text('Sender : '.$contactFormData['email'].\PHP_EOL.
                     $contactFormData['message'],
                     'text/plain');
-                    dd($message);
             $mailer->send($message);
 
             $this->addFlash('success', 'Votre message a été envoyé');
