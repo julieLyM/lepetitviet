@@ -54,7 +54,7 @@ class RegistrationController extends AbstractController
             );
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('users');
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('registration/register.html.twig', [
@@ -73,12 +73,12 @@ class RegistrationController extends AbstractController
         } catch (VerifyEmailExceptionInterface $exception) {
             $this->addFlash('verify_email_error', $exception->getReason());
 
-            return $this->redirectToRoute('users');
+            return $this->redirectToRoute('app_login');
         }
 
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
         $this->addFlash('success',"Votre inscription s'est bien déroulée, vous pouvez dès à présent vous connecter à votre compte ");
 
-        return $this->redirectToRoute('app_register');
+        return $this->redirectToRoute('user_index');
     }
 }
