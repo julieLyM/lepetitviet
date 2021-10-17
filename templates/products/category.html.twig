@@ -4,66 +4,16 @@
 
 {% block body %}
  
-<div class="container mx-auto">
-
-    <div class="row mt-3">
-        <div class="col-md-6 d-flex justify-content-center">
-            <div class="card text-center category-pic" style="width: 18rem;">
-                <div class="card-body">
-                    <a href="{{ path('products_show', {'slug' : 'entree'}) }}" >
-                    <img src="{{ asset('uploads/nem.png') }} " class="card-img-top" alt="nem" height="170px" width="50%">
-                        <h5 class="card-title p-3">Entree</h5>
-                    </a>
-                </div>
+<div class="container mx-auto d-flex m-3 p-3">
+    {% for categorie in categories %}
+        <div class="card text-center category-pic m-3" style="width: 18rem;">
+            <div class="card-body">
+                <a href="{{ path('products_show', {'slug':categorie.slug}) }}" >
+                <img class="img-fluid" src="{{asset('uploads/category/' ~ categorie.image) }}" alt="{{ categorie.name  }}">
+                    <h5 class="card-title p-3">{{categorie.name}}</h5>
+                </a>
             </div>
         </div>
-    
-        <div class="col-md-6 d-flex justify-content-center">
-            <div class="card text-center" style="width: 18rem;">
-                <div class="card-body">
-                    <a href="{{ path('products_show', {'slug' : 'plat'}) }}">
-                    <img src="{{ asset('uploads/o.jpg') }} " class="card-img-top" alt="un bo bun" height="170px" width="50%">
-                        <h5 class="card-title p-3">Plat</h5>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-{# 
-        <div class="col-md-4 d-flex justify-content-center">
-            <div class="card text-center" style="width: 18rem;">
-                <div class="card-body">
-                    <a href="{{ path('products_show', {'slug' : 'formule'}) }}">
-                    <img src="{{ asset('uploads/bo-bun.jpg') }} " class="card-img-top" alt="un bo bun" width="50%">
-                        <h5 class="card-title p-3">les formules</h5>
-                    </a>
-                </div>
-            </div>
-        </div> #}
-    </div>
-
-    <div class="row mt-3 mb-3">
-        <div class="col-md-6 d-flex justify-content-center" >
-            <div class="card text-center" style="width: 18rem;">
-                <div class="card-body">
-                    <a href="{{ path('products_show', {'slug' : 'dessert'}) }}">
-                    <img src="{{ asset('uploads/coco.jpeg') }} " class="card-img-top" alt="dessert coco" height="170px" width="50%">
-                        <h5 class="card-title p-3">Dessert</h5>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 d-flex justify-content-center">                  
-            <div class="card text-center category-pic" style="width: 18rem;">
-                <div class="card-body">
-                    <a href="{{ path('products_show', {'slug' : 'bubbletea'}) }}">
-                    <img src="{{ asset('uploads/bbtea.jpeg') }} " class="card-img-top" alt="bb tea" height="170px" width="50%">
-                        <h5 class="card-title">Bubble tea</h5>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    {% endfor %}
 </div>
 {% endblock %}

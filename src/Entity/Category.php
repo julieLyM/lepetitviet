@@ -29,12 +29,15 @@ class Category
      */
     private $slug;
 
-
-
     /**
      * @ORM\OneToMany(targetEntity=Product::class, mappedBy="categorie")
      */
     private $products;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
 
     public function __construct()
     {
@@ -111,6 +114,18 @@ class Category
                 $product->setCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

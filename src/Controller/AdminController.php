@@ -126,40 +126,25 @@ class AdminController extends AbstractController
     /**
      * @Route("/nos-produits/creation-produit", name="create_product", methods={"GET|POST"})
      */
-    public function create(Request $request, SluggerInterface $slugger)
-
-    {
-        #Creation d'un nouvel produit vide
+    public function create(Request $request, SluggerInterface $slugger){
         $product = new Product();
         $product->setCreatedAt(new \DateTime());
 
-        #remplacer par l'itulisateur actuel(ici, l'admin)
-        $product->setUser($this->getUser());#l"utilisateur qui est connecté
-
-
-        #CREATION DE FORMULAIRE
+        $product->setUser($this->getUser());
 
         $form = $this->createForm(ProductType::class, $product);
 
-
-        #Permet a symfony de gérer les données saisies par l'utilisateur
         $form->handleRequest($request);
-
-        #Si le formulaire est soumis et valide
 
         if($form->isSubmitted() && $form->isValid()){
 
             /** @var UploadedFile $image */
             $image = $form->get('image')->getData();
 
-
             if ($image) {
                 $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
-                // this is needed to safely include the file name as part of the URL
                 $safeFilename = $slugger->slug($originalFilename);
                 $newFilename = $safeFilename.'-'.uniqid('', true).'.'.$image->guessExtension();
-
-
                 try {
                     $image->move(
                         $this->getParameter('images_directory'),
@@ -167,31 +152,23 @@ class AdminController extends AbstractController
                     );
                 } catch (FileException $e) {
                    $this->addFlash('danger','une erreur est survenue durant le chargement de votre page');
-                }
-
+                    }
 
                 $product->setImage($newFilename);
             }
 
-            # Generation de l'alias à partir de l'article
             $product->setSlug(
                 $slugger->slug(
                     $product->getName()
-                )
-                );
-
-            # Insertion dans la base de données
+                ));
 
             $em =$this->getDoctrine()->getManager();
             $em->persist($product);
             $em->flush();
-
             $this->addFlash('success','votre produit a été ajouté');
 
             return $this->redirectToRoute('admin_list_all_products');
         }
-
-
         return $this->render('products/create_product.html.twig', [
             'form'=> $form->createView()
         ]);
@@ -282,7 +259,5 @@ public function remove(Product $product)
         ]);
 
     }
-
-
 
 }
