@@ -14,18 +14,15 @@ class StripeController extends AbstractController
     /**
      * @Route("/order/create-session/{reference}", name="create_session", methods={"GET|POST"})
      */
-    public function index($reference)#la référence  va nous permettre d'aller chercher la commande liée au paiement.
+    public function index($reference)
     {
         $YOUR_DOMAIN = 'http://localhost:8000';
         $products_stripe = [];
-
-        #on récupére les informations de la commande lié à la référence
         $order = $this->getDoctrine()
                 ->getRepository(Order::class)
                 ->findOneByReference($reference);
 
-        foreach ($order->getDetails()->getValues() as $item){#on récupere les infos en faisant une boucle grace à la variable référence de la commande
-
+        foreach ($order->getDetails()->getValues() as $item){
             $products_stripe[] = [
 
                 'price_data' => [
@@ -33,12 +30,10 @@ class StripeController extends AbstractController
                     'unit_amount' => $item->getProduct()->getPrice()*100,
                     'product_data' => [
                         'name' => $item->getProduct()->getName(),
-                        // 'images' => [[$YOUR_DOMAIN . "/uploads/images/".$item->getProduct()->getImage()]],
                     ],
                 ],
                 'quantity' => $item->getQuantity(),
             ];
-
         }
 
         Stripe::setApiKey('sk_test_51JfKIJIKmyGlsl8YOWybUWrg1ugG8nBq6bmhOHcKWRlEFaitNo8BHWI3KdpFLFYMYSWIqukeDTQtT5eVYaLl9Fzx00vPv12toc');
@@ -54,8 +49,7 @@ class StripeController extends AbstractController
             'cancel_url' => $YOUR_DOMAIN . '/order/cancel/{CHECKOUT_SESSION_ID}',
         ]);
 
-        $order->SetStripeSessionId($checkout_session->id);#On crée une variable qui va nous permettre de récupérér les infos de la commande payée via stripe
-        #il faut envoyer l'information dans la base de données
+        $order->SetStripeSessionId($checkout_session->id);
         $em = $this->getDoctrine()->getManager();
         $em->flush();
 

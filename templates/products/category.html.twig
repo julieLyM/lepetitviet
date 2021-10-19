@@ -3,7 +3,7 @@
 {% block title %}CHOIX DE PRODUITS{% endblock %}
 
 {% block body %}
- 
+<div class="tele-height">
 <div class="container mx-auto d-flex m-3 p-3">
     {% for categorie in categories %}
         <div class="card text-center category-pic m-3" style="width: 18rem;">
@@ -15,5 +15,6 @@
             </div>
         </div>
     {% endfor %}
+</div>
 </div>
 {% endblock %}

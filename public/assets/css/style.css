@@ -4,18 +4,24 @@
 --------------------------------------------------------------*/
 body {
   font-family: 'Montserrat', sans-serif;
+
   background: rgb(241, 229, 229);
+
   color: rgb(121, 117, 117);
+
   height: 100%;
 }
 
 a {
   color: #cda45e;
+
   text-decoration: none;
 }
 
 a:hover {
+
   color: #d9ba85;
+
   text-decoration: none;
 }
 
@@ -24,7 +30,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .color-g {
-  color: goldenrod;
+  color: rgb(218, 165, 32);
 }
 .btn-gold {
   background-color: goldenrod; color: white; font-weight:500;
@@ -43,7 +49,10 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   border-radius: 10px;
+
   background-color:  #f1e5e5;
+  
+  background-color: white;
 }
 
 /*--------------------------------------------------------------
@@ -57,6 +66,7 @@ h1, h2, h3, h4, h5, h6 {
   bottom: 0;
   z-index: 9999;
   overflow: hidden;
+
   background: #1a1814;
 }
 
@@ -1171,7 +1181,19 @@ section {
   }
 
 }
+@media screen and (max-width: 768px) {
+  [data-aos-delay] {
+    transition-delay: 0 !important;
+  }
+}
 
+@media screen and (min-width: 2200px) {
+  .tele {
+    display: flex;
+  }
+  .tele-height {height : 54vh;
+}
+}
 /*--------------------------------------------------------------
 # Chefs
 --------------------------------------------------------------*/

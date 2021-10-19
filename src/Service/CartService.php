@@ -18,17 +18,12 @@ class CartService {
 
     public function add($id)
     {
-    $panier = $this->session->get('panier', []);#si je n'ai pas encore un panier dans la session , prenons un panier un tableau vide = > un tableau associatif
-
-    #on rajoute les produits dans le panier
+    $panier = $this->session->get('panier', []);
     if(!empty($panier[$id])){
-
-        $panier[$id]++;#si on rajoute le même produit il se rajout au produit que l'on avait dans le panier
+        $panier[$id]++;
     }else{
         $panier[$id] = 1;
     }
-
-    #Remettre le panier dans la session pour le sauvegarder
     $this->session->set('panier', $panier);
     }
 
@@ -63,8 +58,6 @@ class CartService {
 
     $panierWithData = [];
 
-
-
     foreach($panier as $id => $quantity){#a chaque fois qu'il boucle il rajoute une nouvelle entrée
 
                 $panierWithData[] = [
@@ -93,8 +86,6 @@ class CartService {
         }
         return $this->session->set('panier', $panier);#tu me reset le nouveau cart apres la suppression ou/et retrait d'un produit
     }
-
-
 
     public function getTotal()
 

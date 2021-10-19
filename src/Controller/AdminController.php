@@ -33,10 +33,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-
 //----------------------------------------------GESTION UTILISATEURS----------------------------------------------
-
-
     /**
      * @Route("/utilisateurs",name="users")
      *

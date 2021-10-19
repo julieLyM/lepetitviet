@@ -2,9 +2,6 @@
 {% block title %}Le petit Vietnamien{% endblock %}
 
 {% block body %}
-
-
- <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
     <div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
       <div class="row">
@@ -18,17 +15,11 @@
             <a href="{{path('products_index')}}" class="btn-book animated fadeInUp scrollto">Commander</a>
           </div>
         </div>
-        {# <div class="col-lg-4 d-flex align-items-center justify-content-center position-relative" data-aos="zoom-in" data-aos-delay="200">
-          <a href="" class="glightbox play-btn"></a>
-        </div> #}
-
       </div>
     </div>
-  </section><!-- End Hero -->
+  </section>
 
   <main id="main">
-
-
     <section id="why-us" class="why-us">
       <div class="container" data-aos="fade-up">
 
@@ -55,7 +46,6 @@
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
       <div class="container" data-aos="fade-up">
-
         <div class="row">
           <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="100">
             <div class="about-img">
@@ -71,14 +61,12 @@
             </ul>
           </div>
         </div>
-
       </div>
     </section><!-- End About Section -->
 
     <!-- ======= Menu Section ======= -->
     <section id="menu" class="menu section-bg">
       <div class="container" data-aos="fade-up">
-
         <div  id="menu" class="section-title">
           <h2>Menu</h2>
           <p>Nous vous proposons un large choix</p>
@@ -93,26 +81,23 @@
               <li data-filter=".filter-plat">Plat</li>
               <li data-filter=".filter-dessert">Déssert</li>
               <li data-filter=".filter-bbtea">Bubble Tea</li>
-
             </ul>
           </div>
         </div>
 
         <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
-
           <div class="col-lg-6 menu-item filter-plat">
-            <img src="{{ asset('uploads/bobun.jpeg') }}" class="menu-img" alt="">
+            <img src="{{ asset('uploads/images/bobun.jpeg') }}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Bo Bun</a><span>12€90</span>
             </div>
             <div class="menu-ingredients">
               Vermicielles de riz, crudités, herbes aromatiques et viande avec sauce nuoc mâm Les viandes : Bœuf citronnelle, Bœuf oignons, Poulet citronnelle, Poulet char siu ou Crevettes saté. Les nems : Nem au poulet ou Nem légumes Les garnitures : Pousses de soja, salade, menthe, coriandre, concombre, ciboulette, oignon frits, cacahuètes grillées, carottes marinées, piment frais.
-
             </div>
           </div>
 
           <div class="col-lg-6 menu-item filter-plat">
-            <img src="{{ asset('uploads/mixao.jpeg') }}" class="menu-img" alt="">
+            <img src="{{ asset('uploads/images/mixao.jpeg') }}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Mi Xao</a><span>12€90</span>
             </div>
@@ -122,7 +107,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-plat">
-            <img src="{{ asset('uploads/riz.jpeg') }}" class="menu-img" alt="">
+            <img src="{{ asset('uploads/images/riz.jpeg') }}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Riz sauté</a><span>12€90</span>
             </div>
@@ -133,7 +118,7 @@
 
 
           <div class="col-lg-6 menu-item filter-specialty">
-            <img src="{{ asset('uploads/banhmi.jpeg') }}" class="menu-img" alt="">
+            <img src="{{ asset('uploads/images/banhmi.jpeg') }}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Banh mi</a><span>7€90€</span>
             </div>
@@ -143,7 +128,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-specialty">
-            <img src="{{ asset('uploads/banhmi.jpeg') }}" class="menu-img" alt="">
+            <img src="{{ asset('uploads/images/banhmi.jpeg') }}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Bánh mì Tofu à la citronnelle</a><span>7€90</span>
             </div>
@@ -153,7 +138,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-specialty">
-            <img src="{{ asset('uploads/banhbao.jpeg') }}" class="menu-img" alt="">
+            <img src="{{ asset('uploads/images/banhbao.jpeg') }}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Banh bao</a><span>5€50</span>
             </div>
@@ -163,7 +148,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-specialty">
-            <img src="{{ asset('uploads/banhbao.jpeg') }}" class="menu-img" alt="">
+            <img src="{{ asset('uploads/images/banhbao.jpeg') }}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Bánh bao veggie</a><span>5€50</span>
             </div>
@@ -173,7 +158,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-starters">
-            <img src="{{ asset('uploads/nem.png') }}" class="menu-img" alt="">
+            <img src="{{ asset('uploads/images/nem.jpg') }}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Nem aux légumes</a><span>1€50</span>
             </div>
@@ -183,7 +168,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-starters">
-            <img src="{{ asset('uploads/nem.png') }}" class="menu-img" alt="">
+            <img src="{{ asset('uploads/images/nempoulet.jpg') }}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Nem au poulet</a><span>1€50</span>
             </div>
@@ -193,7 +178,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-starters">
-            <img src="{{ asset('uploads/roll.jpeg') }}" class="menu-img" alt="">
+            <img src="{{ asset('uploads/images/roll.jpeg') }}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Rouleau de printemps aux crevettes</a><span>4€50</span>
             </div>
@@ -203,7 +188,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-starters">
-            <img src="{{ asset('uploads/samoussa.jpeg') }}" class="menu-img" alt="">
+            <img src="{{ asset('uploads/images/samoussa.jpeg') }}" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Samoussa aux légumes</a><span>1€50</span>
             </div>
@@ -211,11 +196,8 @@
               De bons samoussas végétariens très savoureux et épicées, à éviter si l'on n'aime pas les plats un peu relevés !
             </div>
           </div>
-
-
-
           <div class="col-lg-6 menu-item filter-bbtea">
-            <img src="{{ asset('uploads/bigbbtea.jpg') }}" class="menu-img" alt="">
+            <img src="{{ asset('uploads/images/bigbbtea.jpg') }}" class="menu-img" alt="bubble tea taille grand">
             <div class="menu-content">
               <a href="#">Grand Bubble Tea</a><span>7€90</span>
             </div>
@@ -226,7 +208,7 @@
 
 
           <div class="col-lg-6 menu-item filter-bbtea">
-            <img src="{{ asset('uploads/smallbbtea.jpg') }}" class="menu-img" alt="">
+            <img src="{{ asset('uploads/images/smallbbtea.jpg') }}" class="menu-img" alt="bubble tea">
             <div class="menu-content">
               <a href="#">Petit Bubble Tea</a><span>6€90</span>
             </div>
@@ -236,7 +218,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-dessert">
-            <img src="{{ asset('uploads/coco.jpeg') }}" class="menu-img" alt="">
+            <img src="{{ asset('uploads/category/coco.jpeg') }}" class="menu-img" alt="dessert à la coco">
             <div class="menu-content">
               <a href="#">Perles de Tapioca au lait de Coco Banane</a><span>4€60</span>
             </div>
@@ -246,7 +228,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-dessert">
-            <img src="{{ asset('uploads/nem.png') }}" class="menu-img" alt="">
+            <img src="{{ asset('uploads/images/nem.jpg') }}" class="menu-img" alt="nem chocolat">
             <div class="menu-content">
               <a href="#">Nems aux Chocolat et Coco</a><span>4€60</span>
             </div>
@@ -256,7 +238,7 @@
           </div>
 
           <div class="col-lg-6 menu-item filter-dessert">
-            <img src="{{ asset('uploads/mangue.jpeg') }}" class="menu-img" alt="">
+            <img src="{{ asset('uploads/images/mangue.jpeg') }}" class="menu-img" alt="dessert riz mangue">
             <div class="menu-content">
               <a href="#">Riz gluant au lait de coco avec mangue</a><span>4€60</span>
             </div>
@@ -308,7 +290,7 @@
                     <p>Vermicielles de riz, crudités, herbes aromatiques et viande avec sauce nuoc mâm Les viandes : Bœuf citronnelle, Bœuf oignons, Poulet citronnelle, Poulet char siu ou Crevettes saté. Les nems : Nem au poulet ou Nem légumes Les garnitures : Pousses de soja, salade, menthe, coriandre, concombre, ciboulette, oignon frits, cacahuètes grillées, carottes marinées, piment frais.</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="{{ asset('uploads/bobun.jpeg') }}" alt="" class="img-fluid">
+                    <img src="{{ asset('uploads/images/bobun.jpeg') }}" alt="" class="img-fluid">
                   </div>
                 </div>
               </div>
@@ -320,7 +302,7 @@
                     <p>Mì signifie « nouille de blé » et xào, « sauté ». Pour ceux et celles qui n'ont pas beaucoup de temps pour cuisiner mais qui veulent toujours avoir des repas faits maison à la fois délicieux et nutritifs, voici le plat idéale de nouilles sautées à la vietnamienne. Elle est composée de nouilles aux œufs (Ramen), de légumes et de viande. Elle peut être déclinée en plat « Vegan ».</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="{{ asset('uploads/mixao.jpeg') }}" alt="" class="img-fluid">
+                    <img src="{{ asset('uploads/images/mixao.jpeg') }}" alt="" class="img-fluid">
                   </div>
                 </div>
               </div>
@@ -332,7 +314,7 @@
                     <p>Le bánh bao est un pain farcis à la vapeur. La pâte contient du lait et la farce contient généralement de l'œuf dur et de la saucisse. Il est classé dans les bánh, signifiant « gâteau », un ensemble de plats très variés de la cuisine vietnamienne.</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="{{ asset('uploads/banhbao.jpeg') }}" alt="" class="img-fluid">
+                    <img src="{{ asset('uploads/images/banhbao.jpeg') }}" alt="" class="img-fluid">
                   </div>
                 </div>
               </div>
@@ -344,7 +326,7 @@
                     <p>Bánh mì est un mot vietnamien qui signifie « pain de blé ». Le pain, et plus particulièrement la baguette, a été introduit au Viêt Nam pendant l’époque coloniale française.</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="{{ asset('uploads/banhmi.jpeg') }}" alt="" class="img-fluid">
+                    <img src="{{ asset('uploads/images/banhmi.jpeg') }}" alt="" class="img-fluid">
                   </div>
                 </div>
               </div>
@@ -357,99 +339,80 @@
                     <p>Personnalité : lacté, le Bubble tea est d’un tempérament doux et accompagne parfaitement les perles de tapioca légèrement sucrées. Au sirop de fruit, le Bubble tea devient synonyme de fraîcheur et relève à merveille la douceur des perles.</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2" style="margin: 45px auto;">
-                    <img src="{{ asset('uploads/bbtea.jpeg') }}" alt="" class="img-fluid">
+                    <img src="{{ asset('uploads/images/passion.jpeg') }}" alt="" class="img-fluid">
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </section><!-- End Specials Section -->
  
 
     <!-- ======= Gallery Section ======= -->
-    <section id="gallery" class="gallery">
+    <section id="gallery" class="gallery tele">
 
       <div class="container" data-aos="fade-up">
         <div class="section-title">
           <h2>Galerie</h2>
           <p>Quelques photos de notre restaurant</p>
-        </div>
+        </div><br>
       </div>
-
       <div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
-
         <div class="row g-0">
-
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
                 <img src="assets/img/gallery/com.jpeg" alt="" class="img-fluid">
             </div>
           </div>
-
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-                <img src="assets/img/gallery/bubble.jpeg" alt="" class="img-fluid galery-perso" s>
+                <img src="assets/img/gallery/bubble.jpeg" alt="" class="img-fluid " >
             </div>
           </div>
-
          <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-                <img src="assets/img/gallery/banhbao.jpeg" alt="" class="img-fluid galery-perso">
+                <img src="assets/img/gallery/banhbao.jpeg" alt="" class="img-fluid ">
             </div>
           </div>
-
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
                 <img src="assets/img/gallery/index5.png" alt="" class="img-fluid" >
             </div>
           </div>
-
-    
-
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-                <img src="assets/img/gallery/deco.jpeg" alt="" class="img-fluid galery-perso" >
+                <img src="assets/img/gallery/deco.jpeg" alt="" class="img-fluid" >
             </div>
           </div>
-
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
                 <img src="assets/img/gallery/bobun.jpeg" alt="" class="img-fluid">
             </div>
           </div>
-
-
         <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-                <img src="assets/img/gallery/formule1.jpg" alt="" class="img-fluid galery-perso galery-end" >
+                <img src="assets/img/gallery/banhmi.jpeg" alt="" class="img-fluid" >
             </div>
           </div>
-
           <div class="col-lg-3 col-md-5">
             <div class="gallery-item">
-                <img src="assets/img/gallery/mixao.jpeg" alt="" class="img-fluid galery-end">
+                <img src="assets/img/gallery/mixao.jpeg" alt="" class="img-fluid ">
             </div>
           </div>
-
         </div>
-
       </div>
     </section><!-- End Gallery Section -->
 
     <!-- ======= Chefs Section ======= -->
     <section id="chefs" class="chefs" style="background: #1A1814;">
       <div class="container" data-aos="fade-up">
-
         <div class="section-title">
           <h2>Notre staff</h2>
           {# <p>Pour vous familiariser</p> #}
         </div>
-
         <div class="row">
-
           <div class="col-lg-4 col-md-6">
             <div class="member" data-aos="zoom-in" data-aos-delay="100" style="height:395px; border-radius:50%;">
               <img src="assets/img/chefs/chefs-1.jpg" class="img-fluid"  alt="elisia lefur photo">
@@ -467,13 +430,9 @@
             </div>
           </div>
         </div>
-
       </div>
     </section><!-- End Chefs Section -->
-
-
     <div id="preloader"></div>
-
   </main><!-- End #main -->
 
 {% endblock %}

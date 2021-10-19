@@ -20,10 +20,6 @@ class PostType extends AbstractType
    
         ])
         ->add('content', HiddenType::class)
-        //  ->add('categories', EntityType::class, [
-        //      'class' => Categories::class,
-        //      'choice_label' => 'name'
-        //  ])
     ;
 }
 

@@ -14,8 +14,8 @@ class AppFixtures extends Fixture
         $user = new User();
         $user->setFirstname('julie')
             ->setLastname('ly')
-            ->setEmail('juju@juju.ju')
-            ->setPassword('demo')
+            ->setEmail('julie@ly.fr')
+            ->setPassword('coucou')
             ->setPhone(0160606060)
             ->setAdress('10 rue de paris')
             ->setCity('Paris')
@@ -24,14 +24,6 @@ class AppFixtures extends Fixture
             ->setCreatedAt(new \DateTime());
 
         $manager->persist($user);
-
-        $politique = new Category();
-        $politique->setName('Politique')->setSlug('politique');
-        $manager->persist($politique);
-
-        $sante = new Category();
-        $sante->setName('Santé')->setSlug('sante');
-        $manager->persist($sante);
 
         $manager->flush();
 

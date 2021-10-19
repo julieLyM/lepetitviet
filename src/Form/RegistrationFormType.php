@@ -40,15 +40,11 @@ class RegistrationFormType extends AbstractType
         ])
         ->add('adress',TextType::class, [
             'label'=>'Votre adresse',
-            // 'attr'=>[
-            //     'placeholder'=>'8 rue des lilas...'
-            // ]
+
         ] )
         ->add('zipcode',TextType::class, [
             'label'=>'Votre code postal',
-            // 'attr'=>[
-            //     'placeholder'=>'Entre votre code postal'
-            // ]
+
         ] )
         ->add('city',TextType::class, [
             'label'=>'Votre ville',
@@ -83,8 +79,7 @@ class RegistrationFormType extends AbstractType
             ],
         ])
         ->add('plainPassword', PasswordType::class, [
-            // instead of being set onto the object directly,
-            // this is read and encoded in the controller
+
             'mapped' => false,
             'required' => true,
             'attr' => ['autocomplete' => 'new-password'],
@@ -95,7 +90,6 @@ class RegistrationFormType extends AbstractType
                 new Length([
                     'min' => 6,
                     'minMessage' => 'Votre mot de passe doit avoir un minimun de {{ limit }} caractères',
-                    // max length allowed by Symfony for security reasons
                     'max' => 4096,
                 ]),
             ],

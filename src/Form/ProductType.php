@@ -46,7 +46,6 @@ class ProductType extends AbstractType
             ->add('reference', TextareaType::class, [
                 'label'=>"Reference du produit",
             ])
-            //->add('quantity', HiddenType::class)
             ->add('price',MoneyType::class, [
                 'label'=>"Prix",
                 'required'=>false,
